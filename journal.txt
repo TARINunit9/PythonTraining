@@ -2,3 +2,7 @@
 Downloaded a Python Shell so we can actually start testing things. Did a quick compiling test to make sure the shell was working properly.
 Spent three hours rewiting webexThing.py after some help from Gavin this morning and a bunch of documentation, had a flash of inspiration that might make the program MUCH smaller and simpler. Need to begin small-scale tests in the morning to see if i'm on the right track
 To-do: a test program that just opens (and nothing else) the .pem files Gavin sent
+
+3/22
+Tested a file reading program to make sure I can load .pem files
+Known issues: "import cryptography" function not recognized by python shell
