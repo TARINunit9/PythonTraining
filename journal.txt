@@ -6,3 +6,4 @@ To-do: a test program that just opens (and nothing else) the .pem files Gavin se
 3/22
 Tested a file reading program to make sure I can load .pem files
 Known issues: "import cryptography" function not recognized by python shell
+Update: cryptography installed, though x509 command still not recognized
