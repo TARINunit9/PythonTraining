@@ -15,7 +15,7 @@ messageText = "This is a string I will use for the message."
 databaseLocation = os.listdir() #check if that's allowed
 for file in databaseLocation:
 	checkCert(file)
-#for file in os.listdir(os.getcwd()):
+#for file in os.listdir():
 #	if file.endswith(".pem"):
 #		checkCert(file)
 
@@ -25,7 +25,7 @@ def checkCert(file):
 	
 	#load the file
 	file1 = open(file, "r")
-	certObject = x509.load_pem_x509_certificate(file.read())
+	certObject = x509.load_pem_x509_certificate(file.read()) #check if this should be file or file1
 	if certObject.not_valid_after_utc < weekAfterToday:
 		messageText = "Alert! " + certObject.subject + "is aboout to expire!"
 		jsonStruct = {roomId: roomId, text: messageText}
