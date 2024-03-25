@@ -1,0 +1,110 @@
+Python 3.12.2 (tags/v3.12.2:6abddd9, Feb  6 2024, 21:26:36) [MSC v.1937 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+
+#problem 1
+>>> min(2,3,4)
+2
+>>> max(2,-3,4,7,-5)
+7
+>>> max(2,-3,min(4,7),-5)
+4
+
+#problem 2
+>>> min(max(3,4),abs(-5))
+4
+>>> abs(min(4,6,max(2,8)))
+4
+>>> round(max(5.572, 3.258),abs(-2))
+5.57
+
+#problem 3
+What do you name the function? 'tripler'
+What are the parameters and types? One number, type unspecified
+What calculations? Multiplication
+What info do you return? One number, the same type as was passed in
+Does it work?
+
+def tripler(number):
+	return number*3
+...     
+>>> tripler(9)
+27
+
+#problem 4
+What do you name the function? 'absOfDif'
+What are the parameters and types? Two numbers, type unspecified
+What calculations? Subtraction and the abs() function
+What info do you return? One number
+Does it work?
+
+def absOfDif(numberOne, numberTwo):
+	return abs(numberOne - numberTwo)
+...
+>>> absOfDif(7, -3)
+10
+
+#problem 5
+What do you name the function? 'kmToMile'
+What are the parameters and types? One number, type unspecified
+What calculations? Multiplication
+What info do you return? One number, the same type as was passed in
+Does it work?
+
+def kmToMile(number):
+	return number*1.6
+...
+>>> kmToMile(78)
+124.80000000000001
+[i see we have some floating point shenanigans]
+
+#problem 6
+What do you name the function? 'avgOfThree'
+What are the parameters and types? Three numbers between 0 and 100 inclusive, type unspecified
+What calculations? Addition and division
+What info do you return? One number
+Does it work?
+
+def avgOfThree(numberOne, numberTwo, numberThree):
+	"""Precondition: 0 <= numberOne <= 100
+	0 <= numberTwo <= 100
+	0 <= numberThree <= 100
+	"""
+	return sum(numberOne, numberTwo, numberThree)/3
+>>> avgOfThree(34,56,78)
+Traceback (most recent call last):
+  File "<pyshell#17>", line 1, in <module>
+    avgOfThree(34,56,78)
+  File "<pyshell#16>", line 6, in avgOfThree
+    return sum(numberOne, numberTwo, numberThree)/3
+TypeError: sum() takes at most 2 arguments (3 given)
+#oops
+
+def avgOfThree(numberOne, numberTwo, numberThree):
+	"""Precondition: 0 <= numberOne <= 100
+	0 <= numberTwo <= 100
+	0 <= numberThree <= 100
+	"""
+	return (numberOne + numberTwo + numberThree)/3
+>>> avgOfThree(34,56,78)
+56.0
+#there we go
+
+#problem 7
+What do you name the function? 'gradeAvgDropLowest'
+What are the parameters and types? Four numbers between 0 and 100 inclusive, type unspecified
+What calculations? Algabraic comparison, addition, division
+What info do you return? One number
+Does it work?
+
+def gradeAvgDropLowest(numOne, numTwo, numThree, numFour):
+  """Precondition:
+  0 <= numOne <= 100
+	0 <= numTwo <= 100
+	0 <= numThree <= 100
+  0 <= numFour <= 100
+	"""
+  summation = (numOne + numTwo + numThree + numFour)
+  dropLowest = summation - min(numOne, numTwo, numThree, numFour)
+  return dropLowest/3
+>>> gradeAvgDropLowest(12,34,56,78)
+56.0
