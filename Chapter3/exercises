@@ -108,3 +108,21 @@ def gradeAvgDropLowest(numOne, numTwo, numThree, numFour):
   return dropLowest/3
 >>> gradeAvgDropLowest(12,34,56,78)
 56.0
+
+#problem 8
+def weeks_elapsed(day1, day2):
+  """
+  weeks_elapsed(8,5) = 0
+  weeks_elapsed(40,61) = 3
+  """
+  return abs((day2-day1))//7
+
+#problem 9
+Parameter: a real number
+Example argument: 8
+Function name: square
+Function call: square(8)
+
+#problem 10
+def square(number):
+  return number * number
