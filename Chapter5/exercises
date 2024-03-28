@@ -1,0 +1,51 @@
+Python 3.12.2 (tags/v3.12.2:6abddd9, Feb  6 2024, 21:26:36) [MSC v.1937 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+
+#problem 1
+>>> True and not False
+True
+>>> True and not false
+Traceback (most recent call last):
+  File "<pyshell#1>", line 1, in <module>
+    True and not false
+NameError: name 'false' is not defined. Did you mean: 'False'?
+>>> True or True and False
+True
+>>> not True or not False
+True
+>>> True and not 0
+True
+>>> 52 < 52.3
+True
+>>> 1 + 52 < 52.3
+False
+>>> 4 != 4.0
+False
+
+#problem 2
+>>> alpha = True
+>>> beta = True
+>>> charlie = False
+>>> delta = False
+>>> alpha and beta
+True
+>>> not charlie
+True
+>>> alpha or delta
+True
+
+#problem 3
+>>> not (full and empty) and (full or empty)
+#as a test:
+>>> not (beta and charlie) and (beta or charlie)
+True
+
+#probem 4
+#No, an "exclusive or" logic will return True if NEITHER of the conditions are met
+#in this case, the light will turn on if the temperature is above freezing and the light is above 0.01 lux, which is undesirable
+
+#problem 5
+>>> result = (x == abs(x))
+>>> result
+True
+
