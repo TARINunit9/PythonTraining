@@ -1,0 +1,110 @@
+Python 3.12.2 (tags/v3.12.2:6abddd9, Feb  6 2024, 21:26:36) [MSC v.1937 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+
+#problem 1
+>>> 'Computer' + ' Science'
+'Computer Science'
+>>> 'Darwin\'s'
+"Darwin's"
+>>> 'H2O' * 3
+'H2OH2OH2O'
+>>> 'CO2' * 0
+''
+
+#problem 2
+>>> "They'll hibernate during the winter."
+"They'll hibernate during the winter."
+>>> 'They\'ll hibernate during the winter.'
+"They'll hibernate during the winter."
+>>> '"Absolutely not," he said.'
+'"Absolutely not," he said.'
+>>> '"He said, \'Absolutely not,\'" recalled Mel.'
+'"He said, \'Absolutely not,\'" recalled Mel.'
+>>> ''"He said, 'Absolutely not,' recalled Mel.''
+SyntaxError: unterminated string literal (detected at line 1)
+>>> ''"He said, 'Absolutely not,'" recalled Mel.''
+SyntaxError: invalid syntax
+>>> '''"He said, 'Absolutely not,'" recalled Mel.'''
+'"He said, \'Absolutely not,\'" recalled Mel.'
+>>> 'hydrogen sulfide'
+'hydrogen sulfide'
+>>> "left\right"
+'left\right'
+
+#probem 3
+>>> 'A\nB\nC'
+'A\nB\nC'
+
+#problem 4
+>>> emptyStringTest = ""
+>>> len(emptyStringTest)
+0
+
+#problem 5
+>>> x = 3
+>>> y = 12.5
+>>> print('The rabbit is', x)
+The rabbit is 3
+>>> print('The rabbit is', x, 'years old.')
+The rabbit is 3 years old.
+>>> print(y, 'is average')
+12.5 is average
+>>> print(y, '*', x)
+12.5 * 3
+>>> print(y, '*', x, 'is 37.5')
+12.5 * 3 is 37.5
+
+#problem 6
+#I assume the answer will be "Doe, John"
+#but it could also be "Doe ,  John" depending on how the seperators behave
+#let's put it into Python and find out
+>>> first = 'John'
+>>> last = 'Doe'
+>>> print(last + ', ' + first)
+Doe, John
+
+#problem 7
+>>> float num = input()
+SyntaxError: invalid syntax
+>>> float num
+SyntaxError: invalid syntax
+>>> num = 0.0
+>>> type(num)
+<class 'float'>
+>>> num = input()
+8.9
+>>> print(num)
+8.9
+
+#problem 8
+def repeat(s: str, n:int) -> str:
+  """return s repeated n times; if n is negative return empty string
+
+  >>>repeat('yes', 4)
+  'yesyesyesyes'
+  repeat('no', 0)
+  ''
+  repeat('no', -2)
+  ''
+  repeat('yesnomaybe', 3)
+  'yesnomaybeyesnomaybeyesnomaybe'
+  """
+  outputString = ''
+  itorator = n
+  while itorator > 0
+    outputString = outputString + s
+    itorator--
+  return outputString
+
+#problem 9
+def total_length(s1: str, s2: str) -> int:
+  """Return the sum of the lengths of s1 and s2.
+  >>>total_length('yes', 'no')
+  5
+  >>>total_length('yes', '')
+  3
+  >>>total_length('YES!!!!', 'Noooooo')
+  13
+  """
+  outputString = s1 + s2
+  return len(outputString)
