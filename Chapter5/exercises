@@ -49,3 +49,103 @@ True
 >>> result
 True
 
+#problem 6
+def different(a, b):
+  return a != b
+
+#problem 7
+if population < 10000000:
+  print(population)
+if 10000000 < population < 35000000:
+  print(population)
+if((population/land_area) > 100):
+  print("Densely populated")
+
+if((population/land_area) > 100):
+  print("Densely populated")
+else:
+  print("Sparsely populated")
+
+#problem 8
+def convert_temperatures(t, source, target):
+  bufferNumber = 0.0
+  if source == "Celsius":
+    bufferNumber = t
+  elif source == "Kelvin":
+    bufferNumber = t - 273.15
+  elif source == "Fahrenheit":
+    bufferNumber = (t - 32) / 1.8
+  elif source == "Rankine":
+    bufferNumber = t * 1.8
+  elif source == "Delisle":
+    bufferNumber = 100 - (t * (2/3))
+  elif source == "Newton":
+    bufferNumber = t * (100/33)
+  elif source == "Reaumur":
+    bufferNumber = t * 1.2
+  elif source == "Romer":
+    bufferNumber = ((t - 7.5) * (40/21))
+  else:
+    return "invalid source"
+
+  if target == "Celsius":
+    return bufferNumber
+  elif target == "Kelvin":
+    return bufferNumber + 273.15
+  elif target == "Fahrenheit":
+    return (bufferNumber * 1.8) + 32
+  elif target == "Rankine":
+    return bufferNumber / 1.8
+  elif target == "Delisle":
+    return ((1-- - bufferString) * 1.5)
+  elif target == "Newton":
+    return bufferNumber * (33/100)
+  elif target == "Reaumur":
+    return bufferNumber * 0.8
+  elif target == "Romer":
+    return (bufferNumber * (21/40)) + 7.5
+  else:
+    return "invalid target"
+
+#under this model, adding a new temperature scale "z" would only require two new if statements
+#one for converting Z to Celsius and one for converting Celsius back to z
+
+#problem 9
+The if/else check stops immediately at the first True statement. Because 2 is less than 7, it goes for the more general "less than 7" check.
+We can either A) tweak the first statement to "if 3.0 <= ph < 7.0"
+or B) reverse the two statemnents so "if ph < 3.0" comes first
+
+#problem 10
+Both values of 6.4 and 3.6 will print the message "It's acidic!"
+To print both messages for a value below 4, change the "elif" to "if"
+
+#problem 11
+Pertaining to the code block
+young = age < 45
+slim = bmi < 22.0
+if young:
+  if slim:
+    risk = 'low'
+  else:
+    risk = 'medium'
+else
+  if slim:
+    risk = 'medium'
+  else:
+    risk = 'high'
+
+The code checks for 'slim' instead of 'heavy' because 'heavy' is not defined within the code, only the human brain.
+
+We could modify the cose to use 'heavy' instead, rewriting the code to
+young = age < 45
+heavy = bmi >= 22.0
+if young:
+  if heavy:
+    risk = 'medium'
+  else
+    risk = 'low'
+else:
+  if heavy:
+    risk = 'high'
+  else:
+    risk = 'medium'
