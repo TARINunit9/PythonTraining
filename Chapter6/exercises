@@ -1,0 +1,135 @@
+Python 3.12.2 (tags/v3.12.2:6abddd9, Feb  6 2024, 21:26:36) [MSC v.1937 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+>>> import math
+>>> dir(math)
+['__doc__', '__loader__', '__name__', '__package__', '__spec__', 'acos', 'acosh', 'asin', 'asinh', 'atan', 'atan2', 'atanh', 'cbrt', 'ceil', 'comb', 'copysign', 'cos', 'cosh', 'degrees', 'dist', 'e', 'erf', 'erfc', 'exp', 'exp2', 'expm1', 'fabs', 'factorial', 'floor', 'fmod', 'frexp', 'fsum', 'gamma', 'gcd', 'hypot', 'inf', 'isclose', 'isfinite', 'isinf', 'isnan', 'isqrt', 'lcm', 'ldexp', 'lgamma', 'log', 'log10', 'log1p', 'log2', 'modf', 'nan', 'nextafter', 'perm', 'pi', 'pow', 'prod', 'radians', 'remainder', 'sin', 'sinh', 'sqrt', 'sumprod', 'tan', 'tanh', 'tau', 'trunc', 'ulp']
+>>> dir(__builtins__)
+['ArithmeticError', 'AssertionError', 'AttributeError', 'BaseException', 'BaseExceptionGroup', 'BlockingIOError', 'BrokenPipeError', 'BufferError', 'BytesWarning', 'ChildProcessError', 'ConnectionAbortedError', 'ConnectionError', 'ConnectionRefusedError', 'ConnectionResetError', 'DeprecationWarning', 'EOFError', 'Ellipsis', 'EncodingWarning', 'EnvironmentError', 'Exception', 'ExceptionGroup', 'False', 'FileExistsError', 'FileNotFoundError', 'FloatingPointError', 'FutureWarning', 'GeneratorExit', 'IOError', 'ImportError', 'ImportWarning', 'IndentationError', 'IndexError', 'InterruptedError', 'IsADirectoryError', 'KeyError', 'KeyboardInterrupt', 'LookupError', 'MemoryError', 'ModuleNotFoundError', 'NameError', 'None', 'NotADirectoryError', 'NotImplemented', 'NotImplementedError', 'OSError', 'OverflowError', 'PendingDeprecationWarning', 'PermissionError', 'ProcessLookupError', 'RecursionError', 'ReferenceError', 'ResourceWarning', 'RuntimeError', 'RuntimeWarning', 'StopAsyncIteration', 'StopIteration', 'SyntaxError', 'SyntaxWarning', 'SystemError', 'SystemExit', 'TabError', 'TimeoutError', 'True', 'TypeError', 'UnboundLocalError', 'UnicodeDecodeError', 'UnicodeEncodeError', 'UnicodeError', 'UnicodeTranslateError', 'UnicodeWarning', 'UserWarning', 'ValueError', 'Warning', 'WindowsError', 'ZeroDivisionError', '_', '__build_class__', '__debug__', '__doc__', '__import__', '__loader__', '__name__', '__package__', '__spec__', 'abs', 'aiter', 'all', 'anext', 'any', 'ascii', 'bin', 'bool', 'breakpoint', 'bytearray', 'bytes', 'callable', 'chr', 'classmethod', 'compile', 'complex', 'copyright', 'credits', 'delattr', 'dict', 'dir', 'divmod', 'enumerate', 'eval', 'exec', 'exit', 'filter', 'float', 'format', 'frozenset', 'getattr', 'globals', 'hasattr', 'hash', 'help', 'hex', 'id', 'input', 'int', 'isinstance', 'issubclass', 'iter', 'len', 'license', 'list', 'locals', 'map', 'max', 'memoryview', 'min', 'next', 'object', 'oct', 'open', 'ord', 'pow', 'print', 'property', 'quit', 'range', 'repr', 'reversed', 'round', 'set', 'setattr', 'slice', 'sorted', 'staticmethod', 'str', 'sum', 'super', 'tuple', 'type', 'vars', 'zip']
+
+#problem 1
+>>> floor(-2.8)
+Traceback (most recent call last):
+  File "<pyshell#2>", line 1, in <module>
+    floor(-2.8)
+NameError: name 'floor' is not defined. Did you mean: 'float'?
+>>> math.floor(-2.8)
+-3
+>>> abs(round(-4.3))
+4
+>>> math.ceil(math.sin(34.5))
+1
+
+#problem 2
+>>> import calendar
+>>> help(calendar.isleap)
+Help on function isleap in module calendar:
+
+isleap(year)
+    Return True for leap years, False for non-leap years.
+
+calendar.isleap(2025)
+False
+calendar.isleap(2026)
+False
+calendar.isleap(2028)
+True
+dir(calendar)
+['APRIL', 'AUGUST', 'Calendar', 'DECEMBER', 'Day', 'EPOCH', 'FEBRUARY', 'FRIDAY', 'HTMLCalendar', 'IllegalMonthError', 'IllegalWeekdayError', 'IntEnum', 'JANUARY', 'JULY', 'JUNE', 'LocaleHTMLCalendar', 'LocaleTextCalendar', 'MARCH', 'MAY', 'MONDAY', 'Month', 'NOVEMBER', 'OCTOBER', 'SATURDAY', 'SEPTEMBER', 'SUNDAY', 'THURSDAY', 'TUESDAY', 'TextCalendar', 'WEDNESDAY', '_EPOCH_ORD', '__all__', '__builtins__', '__cached__', '__doc__', '__file__', '__getattr__', '__loader__', '__name__', '__package__', '__spec__', '_colwidth', '_get_default_locale', '_locale', '_localized_day', '_localized_month', '_monthlen', '_nextmonth', '_prevmonth', '_spacing', 'c', 'calendar', 'datetime', 'day_abbr', 'day_name', 'different_locale', 'error', 'firstweekday', 'format', 'formatstring', 'global_enum', 'isleap', 'leapdays', 'main', 'mdays', 'month', 'month_abbr', 'month_name', 'monthcalendar', 'monthrange', 'prcal', 'prmonth', 'prweek', 'repeat', 'setfirstweekday', 'sys', 'timegm', 'warnings', 'week', 'weekday', 'weekheader']
+>>> help(calendar.leapdays)
+Help on function leapdays in module calendar:
+
+leapdays(y1, y2)
+    Return number of leap years in range [y1, y2).
+    Assume y1 <= y2.
+
+>>> calendar.leapdays(2000, 2050)
+13
+>>> help(calendar.day_name)
+Help on _localized_day in module calendar object:
+
+class _localized_day(builtins.object)
+ |  _localized_day(format)
+ |
+ |  Methods defined here:
+ |
+ |  __getitem__(self, i)
+ |
+ |  __init__(self, format)
+ |      Initialize self.  See help(type(self)) for accurate signature.
+ |
+ |  __len__(self)
+ |
+ |  ----------------------------------------------------------------------
+ |  Data descriptors defined here:
+ |
+ |  __dict__
+ |      dictionary for instance variables
+ |
+ |  __weakref__
+ |      list of weak references to the object
+
+>>> calendar.weekday(2016, 7, 29)
+calendar.FRIDAY
+
+#problem 3
+
+#original code
+def average(num1: float, num2: float):
+	"""Return the average of num1 and num2
+	>>> average(10,20)
+	15.0
+	>>> average(2.5, 3.0)
+	2.75
+	"""
+	return num1 + num2 / 2
+
+
+#as expected, both doctests fail
+Python 3.12.2 (tags/v3.12.2:6abddd9, Feb  6 2024, 21:26:36) [MSC v.1937 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+>>> 
+= RESTART: C:\Users\Tarin\Desktop\practice python code\exercise.py
+>>> import doctest
+>>> doctest.testmod()
+**********************************************************************
+File "C:\Users\Tarin\Desktop\practice python code\exercise.py", line 3, in __main__.average
+Failed example:
+    average(10,20)
+Expected:
+    15.0
+Got:
+    20.0
+**********************************************************************
+File "C:\Users\Tarin\Desktop\practice python code\exercise.py", line 5, in __main__.average
+Failed example:
+    average(2.5, 3.0)
+Expected:
+    2.75
+Got:
+    4.0
+**********************************************************************
+1 items had failures:
+   2 of   2 in __main__.average
+***Test Failed*** 2 failures.
+TestResults(failed=2, attempted=2)
+
+#first proposed fix:
+def average(num1: float, num2: float):
+	"""Return the average of num1 and num2
+	>>> average(10,20)
+	15.0
+	>>> average(2.5, 3.0)
+	2.75
+	"""
+	return (num1 + num2) / 2
+
+#results
+Python 3.12.2 (tags/v3.12.2:6abddd9, Feb  6 2024, 21:26:36) [MSC v.1937 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+
+= RESTART: C:\Users\Tarin\Desktop\practice python code\exercise.py
+import doctest
+doctest.testmod()
+TestResults(failed=0, attempted=2)
+
+#success
