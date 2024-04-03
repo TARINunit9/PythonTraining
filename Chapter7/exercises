@@ -28,7 +28,51 @@ False
 #problem 3
 >>> 'tomato'.find('o')
 1
+
+#problem 4
 >>> 'tomato'.find('o', 'tomato'.find('o')+1)
 5
 
-#problem 4
+#problem 5
+>>> 'avocado'.find('o', 'avocado'.find('o')+1)
+6
+
+#let me do a quick experiment
+>>> 'avocado'.find('o', 'avocado'.find('o'))
+2
+#ok so the position variable is inclusive, I do need that +1
+
+#problem 6
+>>> 'runner'.replace('n', 'b')
+'rubber'
+
+#problem 7
+#according to the list of str methods, the mothod to turn ' yes  ' into 'yes' is .strip()
+
+#problem 8
+#let's just run the methods and see for ourselves
+>>> fruit = 'pineapple'
+>>> fruit.find('p', fruit.count('p'))
+5
+>>> fruit.count(fruit.upper().swapcase())
+1
+>>> fruit.replace(fruit.swapcase(), fruit.lower())
+'pineapple'
+#from this I can conclude:
+#count runs before find
+#swapcase MUST run before upper, otherwise count() would return 0
+#swapcase runs before lower
+
+#problem 9
+>>> season = 'summer'
+>>> 'I love {0}!'.format(season)
+'I love summer!'
+
+#problem 10
+>>> side1 = 3
+>>> side2 = 4
+>>> side3 = 5
+>>> 'The sides have lengths {0}, {1}, and {2}.'.format(side1, side2, side3)
+'The sides have lengths 3, 4, and 5.'
+
+#problem 11
