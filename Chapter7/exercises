@@ -76,3 +76,17 @@ False
 'The sides have lengths 3, 4, and 5.'
 
 #problem 11
+>>> 'boolean'.upper()
+'BOOLEAN'
+>>> 'CO2 H2O'.find('2')
+2
+>>> 'CO2 H2O'.find('2', 'CO2 H2O'.find('2')+1)
+5
+>>> 'Boolean'.startswith('Boolean'.lower())
+False
+>>> 'MoNDaY'.lower().capitalize()
+'Monday'
+>>> '  Monday'.lstrip()
+'Monday'
+
+#problem 12
