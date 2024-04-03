@@ -1,0 +1,34 @@
+Python 3.12.2 (tags/v3.12.2:6abddd9, Feb  6 2024, 21:26:36) [MSC v.1937 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+
+#problem 1
+>>> 'hello'.upper()
+'HELLO'
+>>> 'Happy Birthday!'.lower()
+'happy birthday!'
+>>> 'WeeEEeeEEee'.swapcase()
+'wEEeeEEeeEE'
+>>> 'ABC123'.isupper()
+True
+>>> 'aeiouAEIOU'.count('a')
+1
+>>> 'hello'.endswith('o')
+True
+>>> 'hello'.startswith('H')
+False
+>>> 'Hello {0}'.format('Python')
+'Hello Python'
+>>> 'Hello {0}! Hello {1}!'.format('Python', 'World')
+'Hello Python! Hello World!'
+
+#problem 2
+>>> 'tomato'.count('o')
+2
+
+#problem 3
+>>> 'tomato'.find('o')
+1
+>>> 'tomato'.find('o', 'tomato'.find('o')+1)
+5
+
+#problem 4
