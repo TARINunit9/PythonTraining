@@ -1,0 +1,29 @@
+#problem 1
+kingdoms[0]
+kingdoms[5]
+kingdoms[0:2]
+kingdoms[2:4]
+kingdoms[4:5]
+kingdoms[]
+
+#problem 2
+kingdoms[-1]
+kingdoms[-6]
+kingdoms[-1:-3]
+kingdoms[-3:-5]
+kingdoms[-5:-6]
+
+#problem 3
+appointments.append('16:30') #this modifies one list
+appointments + '16:30' #this creates a new list from two lists
+
+#problem 4
+ids.remove(3382)
+ids.index(9362)
+ids.insert(2299, ids.index(9362)) # +1?
+ids.extend(5566, 1830)
+ids.reverse()
+ids.sort()
+
+#problem 5
+alkaline_earth_metals = [4, 12, 20, 38, 56, 88]
