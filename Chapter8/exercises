@@ -61,3 +61,38 @@ NameError: name 'sort' is not defined. Did you mean: 'sorted'?
 >>> temps_in_celsius = cool_temps + warm_temps
 >>> temps_in_celsius
 [16.8, 19.6, 22.5, 23.9, 25.2, 28, 31.4]
+
+#problem 7
+def same_first_last(L: list) -> bool:
+  """Precondition: len(L) >= 2
+  Return True if and only if first item of the list is the same as the last.
+  >>> same_first_last([3, 4, 2, 8, 3])
+  True
+  >>> same_first_last(['apple', 'banana', 'pear'])
+  False
+  >>> same_first_last([4.0, 4.5])
+  False
+  """
+  return list[0] == list[-1]
+#>>> testList = [3, 4, 2, 8, 3]
+#>>> testList[0] == testList[-1]
+#True
+
+#problem 8
+def is_longer(L1: list, L2: list) -> bool:
+  """Return True if and only if L1 is longer than L2.
+  >>> is_longer()
+  True
+  >>> is_longer()
+  False
+  >>> is_longer()
+  False
+  """
+  return len(L1) > len(L2)
+
+#problem 9
+#the index values[1] now contains a memory pointer to values
+
+#problem 10
+
+#problem 11
