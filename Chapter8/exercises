@@ -26,4 +26,38 @@ ids.reverse()
 ids.sort()
 
 #problem 5
-alkaline_earth_metals = [4, 12, 20, 38, 56, 88]
+>>> alkaline_earth_metals = [4, 12, 20, 38, 56, 88]
+>>> alkaline_earth_metals[5]
+88
+>>> alkaline_earth_metals[-1]
+88
+>>> len(alkaline_earth_metals)
+6
+>>> max(alkaline_earth_metals)
+88
+
+#problem 6
+>>> temps = [25.2, 16.8, 31.4, 23.9, 28, 22.5, 19.6]
+>>> sort(temps)
+Traceback (most recent call last):
+  File "<pyshell#7>", line 1, in <module>
+    sort(temps)
+NameError: name 'sort' is not defined. Did you mean: 'sorted'?
+>>> temps.sort()
+>>> temps
+[16.8, 19.6, 22.5, 23.9, 25.2, 28, 31.4]
+>>> cool_temps = temps[0:1]
+>>> warm_temps = temps[2:6]
+>>> cool_temps
+[16.8]
+>>> warm_temps
+[22.5, 23.9, 25.2, 28]
+>>> cool_temps = temps[0:2]
+>>> warm_temps = temps[2:7]
+>>> cool_temps
+[16.8, 19.6]
+>>> warm_temps
+[22.5, 23.9, 25.2, 28, 31.4]
+>>> temps_in_celsius = cool_temps + warm_temps
+>>> temps_in_celsius
+[16.8, 19.6, 22.5, 23.9, 25.2, 28, 31.4]
