@@ -93,6 +93,19 @@ def is_longer(L1: list, L2: list) -> bool:
 #problem 9
 #the index values[1] now contains a memory pointer to values
 
+#these need testing
 #problem 10
+units[0]
+units[1]
+units[0][0]
+units[1][0]
+units[1:3][]
+units[][0:2]
 
 #problem 11
+units[-2]
+units[-1]
+units[-2][-3]
+units[-1][-3]
+units[-1:-3][]
+units[][-2:-4]
