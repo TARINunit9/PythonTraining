@@ -1,0 +1,144 @@
+#problem 1
+kingdoms[0]
+kingdoms[5]
+kingdoms[0:2]
+kingdoms[2:4]
+kingdoms[4:5]
+kingdoms[]
+
+#problem 2
+kingdoms[-1]
+kingdoms[-6]
+kingdoms[-1:-3]
+kingdoms[-3:-5]
+kingdoms[-5:-6]
+
+#problem 3
+appointments.append('16:30') #this modifies one list
+appointments + '16:30' #this creates a new list from two lists
+
+#problem 4
+ids.remove(3382)
+ids.index(9362)
+ids.insert(2299, ids.index(9362)) # +1?
+ids.extend(5566, 1830)
+ids.reverse()
+ids.sort()
+
+#problem 5
+>>> alkaline_earth_metals = [4, 12, 20, 38, 56, 88]
+>>> alkaline_earth_metals[5]
+88
+>>> alkaline_earth_metals[-1]
+88
+>>> len(alkaline_earth_metals)
+6
+>>> max(alkaline_earth_metals)
+88
+
+#problem 6
+>>> temps = [25.2, 16.8, 31.4, 23.9, 28, 22.5, 19.6]
+>>> sort(temps)
+Traceback (most recent call last):
+  File "<pyshell#7>", line 1, in <module>
+    sort(temps)
+NameError: name 'sort' is not defined. Did you mean: 'sorted'?
+>>> temps.sort()
+>>> temps
+[16.8, 19.6, 22.5, 23.9, 25.2, 28, 31.4]
+>>> cool_temps = temps[0:1]
+>>> warm_temps = temps[2:6]
+>>> cool_temps
+[16.8]
+>>> warm_temps
+[22.5, 23.9, 25.2, 28]
+>>> cool_temps = temps[0:2]
+>>> warm_temps = temps[2:7]
+>>> cool_temps
+[16.8, 19.6]
+>>> warm_temps
+[22.5, 23.9, 25.2, 28, 31.4]
+>>> temps_in_celsius = cool_temps + warm_temps
+>>> temps_in_celsius
+[16.8, 19.6, 22.5, 23.9, 25.2, 28, 31.4]
+
+#problem 7
+def same_first_last(L: list) -> bool:
+  """Precondition: len(L) >= 2
+  Return True if and only if first item of the list is the same as the last.
+  >>> same_first_last([3, 4, 2, 8, 3])
+  True
+  >>> same_first_last(['apple', 'banana', 'pear'])
+  False
+  >>> same_first_last([4.0, 4.5])
+  False
+  """
+  return list[0] == list[-1]
+#>>> testList = [3, 4, 2, 8, 3]
+#>>> testList[0] == testList[-1]
+#True
+
+#problem 8
+def is_longer(L1: list, L2: list) -> bool:
+  """Return True if and only if L1 is longer than L2.
+  >>> is_longer()
+  True
+  >>> is_longer()
+  False
+  >>> is_longer()
+  False
+  """
+  return len(L1) > len(L2)
+
+#problem 9
+#the index values[1] now contains a memory pointer to values
+
+#these need testing
+#problem 10
+units[0]
+units[1]
+units[0][0]
+units[1][0]
+units[1:3][]
+units[][0:2]
+
+#problem 11
+units[-2]
+units[-1]
+units[-2][-3]
+units[-1][-3]
+units[-1:-3][]
+units[][-2:-4]
+
+#me trying to test problem 10
+Python 3.12.2 (tags/v3.12.2:6abddd9, Feb  6 2024, 21:26:36) [MSC v.1937 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+>>> units = [['km', 'miles', 'league']['kg', 'pound', 'stone']]
+Traceback (most recent call last):
+  File "<pyshell#0>", line 1, in <module>
+    units = [['km', 'miles', 'league']['kg', 'pound', 'stone']]
+TypeError: list indices must be integers or slices, not tuple
+>>> units = [['km', 'miles', 'league'], ['kg', 'pound', 'stone']]
+>>> units[0]
+['km', 'miles', 'league']
+>>> units[1]
+['kg', 'pound', 'stone']
+>>> [units[0][0]
+...  ]
+['km']
+>>> units[1][0]
+'kg'
+>>> units[1:3][]
+SyntaxError: invalid syntax
+>>> units[0[1:3]]
+Traceback (most recent call last):
+  File "<pyshell#8>", line 1, in <module>
+    units[0[1:3]]
+TypeError: 'int' object is not subscriptable
+#I admit I had to look this last part up, I didn't understand what "[0][0]" would get parsed as
+#but yeah this solution clicks
+>>> units[0][1:]
+['miles', 'league']
+#means "sublist at index 0, and the items in that sublist starting with index 1"
+>>> units[1][0:2]
+['kg', 'pound']
