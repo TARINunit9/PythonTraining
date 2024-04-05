@@ -1,0 +1,36 @@
+#problem 1
+for item in celegans_phenotypes:
+	print(item)
+
+#problem 3
+list(half_lives)
+
+#problem 3
+more_whales = []
+for item in whales:
+	more_whales.append(item + 1)
+
+#tests for the above
+Python 3.12.2 (tags/v3.12.2:6abddd9, Feb  6 2024, 21:26:36) [MSC v.1937 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+>>> superList = [1, 2, 3, 4, 5]
+>>> list(superList)
+[1, 2, 3, 4, 5]
+>>> for item in superList:
+...     print item
+...     
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print(...)?
+>>> for item in superList:
+...     print(item)
+... 
+1
+2
+3
+4
+5
+>>> anotherList = []
+>>> for item in superList:
+...     anotherList.append(item + 1)
+... 
+>>> list(anotherList)
+[2, 3, 4, 5, 6]
