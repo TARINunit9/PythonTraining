@@ -35,3 +35,10 @@ while line.startswith('#'):
 #this moves the cursor to the end of the header
 #then pass the rest of the content into a new variable
 bufferString = reader.read()
+
+#problem 5
+#according to documentation of the read() function it automatically stops at the end of file
+#so my first guess is to just wrap the remaining for loop in an if statement
+if line:
+	for line in reader:
+	line = line.strip
