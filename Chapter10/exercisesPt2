@@ -1,0 +1,8 @@
+#"I'm going to have to grade my own work on this one"
+
+#problem 5
+#my answer of the simple if loop was correct. I did have one error tho
+#my answer:
+if line:
+#correct answer:
+if line != '':
