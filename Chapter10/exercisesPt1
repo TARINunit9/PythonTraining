@@ -1,0 +1,27 @@
+#rough drafts for now
+
+#problem 1
+def backupProgram():
+	userInput = input("Please specify a file: ")
+	with open(userInput, 'r') as inputFile:
+		contents = inputFile.read()
+	outputFileName = userInput + ".bak"
+	with open(outputfilename, 'w') as outputFile:
+		outputFile.write(contents)
+
+#problem 2
+with open('alkaline_metals.txt', 'r') as inputFile:
+  elName = []
+  atNum = []
+  atweight = []
+  for line in inputFile:
+    bufferLine = line.split()
+     elName.append(bufferLine[0])
+    atNum.append(bufferLine[1])
+     atWeight.append(bufferLine[2])
+  listOfLists = [elName, atNum, atWeight]
+
+#problem 3
+#"my first instinct is to try using negative indecies. Something like file.read(-1)"
+#"if that doesn't work, I could just read the file forwards, then reverse the contents manually with string.reverse()"
+#"python doccumentation says that 'string.reverse()' doesn't exist. Instead Python has this: string[::-1]"
