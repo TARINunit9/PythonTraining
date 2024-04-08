@@ -45,4 +45,12 @@ if line:
 #etc. etc.
 
 #problem 6
+#adding a continue statement to the fore loop:
+for line in header
+	if line == '-':
+		continue
+	value = int(line)
+	smallest = min(smallest, value)
 
+#problem 7
+#note to self: use the strip function to remove whitespace, THEN check if the line is empty
