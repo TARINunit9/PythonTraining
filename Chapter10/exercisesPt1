@@ -25,3 +25,13 @@ with open('alkaline_metals.txt', 'r') as inputFile:
 #"my first instinct is to try using negative indecies. Something like file.read(-1)"
 #"if that doesn't work, I could just read the file forwards, then reverse the contents manually with string.reverse()"
 #"python doccumentation says that 'string.reverse()' doesn't exist. Instead Python has this: string[::-1]"
+
+#problem 4
+#I am a little confused what this problem is asking
+If it just wants me to shove everything from the original text file into a new string, that's easy
+#we keep this part:
+while line.startswith('#'):
+	line = reader.readLine()
+#this moves the cursor to the end of the header
+#then pass the rest of the content into a new variable
+bufferString = reader.read()
