@@ -214,3 +214,18 @@ TTTTTT
 TTTTTTT
 
 #problem 16
+answer = 0
+rat1buffer = rat_1_weight
+while rat1buffer < (rat_1_weight * 1.25):
+	rat1buffer = rat1buffer + rat_1_rate
+	answer = answer + 1
+print(answer + " weeks")
+
+answer = 0
+rat1buffer = rat_1_weight
+rat2buffer = rat_2_weight
+while rat1buffer < (rat2buffer * 1.1):
+	rat1buffer = rat1buffer + rat_1_rate
+	rat2buffer = rat2buffer + rat_2_rate
+	answer = answer + 1
+print(answer + " weeks")
