@@ -15,3 +15,10 @@ Type "help", "copyright", "credits" or "license()" for more information.
 >>> find_dups([1,2,3,3,4])
 [3, 3]
 
+#problem 3
+#can't use as many buffer variables as I'm used to because of Tuple restrictions
+def mating_pairs(males: list, females: list) -> list[Tuple]:
+	finalResults = []
+	while (males != []) and (females != []):
+		finalResults.append((males.pop(), females.pop()))
+	return finalResults
