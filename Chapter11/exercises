@@ -1,0 +1,17 @@
+#problem 1
+
+Python 3.12.2 (tags/v3.12.2:6abddd9, Feb  6 2024, 21:26:36) [MSC v.1937 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+>>> def find_dups(inputList: list[int]) -> list:
+... 	duplicates = []
+... 	for itor1 in inputList:
+... 		for itor2 in inputList:
+... 			if itor2 <= itor1:
+... 				continue
+... 			elif (inputList[itor1] == inputList[itor2]) and (itor1 != itor2):
+... 				duplicates.append(inputList[itor1])
+... 	return duplicates
+... 
+>>> find_dups([1,2,3,3,4])
+[3, 3]
+
