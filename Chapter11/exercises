@@ -16,6 +16,26 @@ Type "help", "copyright", "credits" or "license()" for more information.
 [3, 3]
 
 #problem 2
+def read_molecule(reader: TextIO) -> CompoundDict:
+	keyString = ''
+	valueString = ''
+	dictChunk = {}
+	for line in reader:
+		line.split()
+		if line[0] == 'COMPND':
+			keyString = line[1]
+		elif line[0] == 'nAtom':
+			#add current line to value
+		elif line[0] == 'nEnd':
+			#update dictionary, we're done with this molecule
+			#dictChunk.update("key": "value"})
+			#keyString = ''
+			#valueString = ''
+	...
+#random note to self
+#dictChunk.update(keyString, (line[2], line[3], line[4], line[5]))
+	...
+	return dictChunk
 
 #problem 3
 #can't use as many buffer variables as I'm used to because of Tuple restrictions
