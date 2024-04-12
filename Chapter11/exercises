@@ -15,6 +15,8 @@ Type "help", "copyright", "credits" or "license()" for more information.
 >>> find_dups([1,2,3,3,4])
 [3, 3]
 
+#problem 2
+
 #problem 3
 #can't use as many buffer variables as I'm used to because of Tuple restrictions
 def mating_pairs(males: list, females: list) -> list[Tuple]:
@@ -22,3 +24,18 @@ def mating_pairs(males: list, females: list) -> list[Tuple]:
 	while (males != []) and (females != []):
 		finalResults.append((males.pop(), females.pop()))
 	return finalResults
+
+#problem 4
+#first draft:
+def listAuthors(filenames: list) -> list:
+	authorList = []
+	for filename in filenames
+		thisFile = open(filename, 'r')
+		contents = thisFile.read()
+		for line in contents:
+			bufferLine = line.lower()
+			if bufferLine.startswith("author"):
+				line.split()
+				authorList.append(line[1:])
+		thisFile.close()
+	return authorList
