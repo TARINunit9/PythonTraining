@@ -34,6 +34,8 @@ def read_molecule(reader: TextIO) -> CompoundDict:
 	...
 #random note to self
 #dictChunk.update(keyString, (line[2], line[3], line[4], line[5]))
+#also note: while a tuple is immutable, a pointer pointing at a tuple is mutable
+#thistuple = x; thistuple = y;
 	...
 	return dictChunk
 
