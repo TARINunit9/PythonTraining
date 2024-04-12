@@ -39,3 +39,14 @@ def listAuthors(filenames: list) -> list:
 				authorList.append(line[1:])
 		thisFile.close()
 	return authorList
+
+#problem 5
+def count_values(dictionary: dictionary) -> Int:
+	uniqueValues = []
+	#so it turns out the dictionary.values() method exists:
+	for item in dictionary.values():
+		if item not in uniqueValues:
+			#yeah apparently there's a whole "not in" operator
+			uniqueValues.append(item)
+
+	return len(uniqueValues)
