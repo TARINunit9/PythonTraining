@@ -157,6 +157,8 @@ def db_consistent(headDict: dictionary) -> Boolean:
 #problem 12
 #the way I see it I have two options for dealing with sparse vectors
 #one way is to temporarily expand a sparse vector into a normal vector, only using that memory temporarily
+#possible idea: "resultDict.update(item, subDict1[item] + subDict2[item])"
+#see if I can use the dict.keys() method to get easy lists of keys
 
 #regarding sub-problem C, I can think of only two relevant questions:
 #"Does it matter if we return the last-most 0 value, or just the last-most non-zero value?"
