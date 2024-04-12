@@ -50,3 +50,25 @@ def count_values(dictionary: dictionary) -> Int:
 			uniqueValues.append(item)
 
 	return len(uniqueValues)
+
+#problem 6
+def leastLikely(particleDict: dictionary) -> value:
+	returnValue = 1.0
+	returnName = "This is a placeholder message"
+	#I think this is how you iterate over the values in a dictionary
+	for item in particleDict:
+		if particleDict[item] < returnValue:
+			returnValue = particleDict[item]
+			returnName = item
+	return returnName
+
+#problem 7
+def count_duplicates(someDictionary: dictionary) -> Int:
+	uniquesList = []
+	dupeCount = 0
+	for item in someDictionary:
+		if someDictionary[item] not in duplicatesList:
+			duplicatesList.append(item)
+		else:
+			dupeCount = dupeCount + 1
+	return dupeCount
