@@ -163,3 +163,34 @@ def db_consistent(headDict: dictionary) -> Boolean:
 #regarding sub-problem C, I can think of only two relevant questions:
 #"Does it matter if we return the last-most 0 value, or just the last-most non-zero value?"
 #and "Do we want just the length of the list of non-sero values, or the length of all values including zero values?"
+
+#I admit I have no idea how to do sparse_add and sparse_dot, because an insert() function on a list TERRIFIES me
+#but let's try it anyway
+
+def sparse_add(subDict1: dictionary, subDict2: dictionary) -> dictionary:
+	#oh geeze I am really stressed about this. I am terrified about inserting hte keys IN ORDER
+	#wait... do I have to?
+	for key in subDict2
+		if subDict1[key]:
+			subDict1.update({key: (subDict1[key] + subDuct2[key])})
+		else:
+			subDict1.update({key: subDuct2[key]})
+	#I am praying this is a good idea
+	#if the key is in dict1 but not in dict2, it will be left alone
+	#if the key is in dict2 but not dict1, it will be added to dict1
+	#if the key is in both, the values will be added and dict1 will be updated
+	return subDict1
+
+#also this function just modifies subList1 instead of using a buffer variable
+
+#and sparse_dot is freakin' easy in comparison. multiplication
+def sparse_dot(subDict1: dictionary, subDict2: dictionary) -> Float:
+	for key in subDict1:
+		if subDict2[key]:
+			subDict1.update({key: (subDict1[key] * subDuct2[key])})
+		else:
+			subDict1.update({key: 0})
+	numsToSum = subDict1.values()
+	return sum(numsToSum)
+
+#now all that's left is to grade my work and see how badly I did
