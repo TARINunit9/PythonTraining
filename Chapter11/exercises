@@ -103,7 +103,7 @@ def count_duplicates(someDictionary: dictionary) -> Int:
 	dupeCount = 0
 	for item in someDictionary:
 		if someDictionary[item] not in duplicatesList:
-			duplicatesList.append(item)
+			uniquesList.append(item)
 		else:
 			dupeCount = dupeCount + 1
 	return dupeCount
