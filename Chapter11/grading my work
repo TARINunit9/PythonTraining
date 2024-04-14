@@ -1,0 +1,42 @@
+#problem 1
+#OK I totally see what the official answer does differently
+#the official answer takes advantage of the set data type, and the set.add() method
+#set.add() does all the word of checking for duplicates for me
+#so all the official answer does, is check if set.add() did anything, and if not only add the duplicates to the result
+#this also solves the problem I had where my function was adding all copies of a duplicate, whereas the answer only wants the first one
+
+#problem 2
+#the official answers don't have anything about def read_molecule like my textbook does
+#Their version of problem 2 is my problem 3, and so on for all the other problems
+
+#problem 3
+#well I can see their more graceful solution, but the underlying algorithm is the same
+#the official answer only checks the length of the males list, whereas my version uses a while loop instead
+#and their version uses set.add() instead of my list.append()
+#but the actual logic of the program, I think I got that correct
+
+#problem 4
+#there are some minor differences between my version and the official answer...
+#official:
+for line in pdb_file:
+#versus my version:
+for line in contents:
+bufferLine = line.lower()
+#but for the core logic of the program, I think I got this one right
+
+#problem 5
+#the official answer pointed me to a little feature I missed the first time around: sets automatically strip duplicate values
+#as stated, I missed that detail, so my function checks for duplicate values and appends non-duplicates to a list
+
+#problem 6
+#far as I can tell, I got this one spot-on
+#my main concern was whether I was allowed to use
+for item in someDictionary:
+#and that's exactly what the official answer uses
+
+#problem 7
+#the official answer goes through the lengthy process of safely removing an item from a list
+#I didn't even want to attempt that so I was instead adding items to a new list
+#also there's a minor difference in the logic:
+#the official answer dumps the values into a buffer list and iterates over that, ignoring the keys
+#whereas I iterate over the dictionary's keys to pull the values out one by one
