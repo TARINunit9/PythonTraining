@@ -1,0 +1,196 @@
+#problem 1
+
+Python 3.12.2 (tags/v3.12.2:6abddd9, Feb  6 2024, 21:26:36) [MSC v.1937 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+>>> def find_dups(inputList: list[int]) -> list:
+... 	duplicates = []
+... 	for itor1 in inputList:
+... 		for itor2 in inputList:
+... 			if itor2 <= itor1:
+... 				continue
+... 			elif (inputList[itor1] == inputList[itor2]) and (itor1 != itor2):
+... 				duplicates.append(inputList[itor1])
+... 	return duplicates
+... 
+>>> find_dups([1,2,3,3,4])
+[3, 3]
+
+#problem 2
+def read_molecule(reader: TextIO) -> CompoundDict:
+	keyString = ''
+	atomList = []
+	listOfLists = []
+	dictChunk = {}
+	for line in reader:
+		line.split()
+		if line[0] == 'COMPND':
+			keyString = line[1]
+		elif line[0] == 'nAtom':
+			#add current line to value
+			atomList = line[2:]
+			listOfLists.append(atomList)
+		elif line[0] == 'nEnd':
+			#update dictionary, we're done with this molecule
+			atomTuple = tuple(listOfLists)
+			dictChunk.update(tuple(keyString, atomTuple))
+	#I was stressing out about variables earlier but no need
+	#this function only creates one molecule, no need to worry abotu tuple variables
+	return dictChunk
+
+def read_all_molecules(reader: TextIO) -> CompoundDict:
+	moleculeDict = {}
+	bufferReader = ''
+	for line in reader:
+		bufferReader.append(line)
+		if line == 'nEnd':
+			moleculeDict.update(read_molecule(bufferReader))
+			bufferReader = ''
+	return moleculeDict
+#I fully admit, this is probably a mess. I'm just trying to keep the algorithm in mind
+#I'm constrained by the input parameters of read_molecule. It makes dealing with tuples easier
+#but it means I have to break up a file reader *into smaller file readers*
+#I also don't actually know if I made the tuples correctly in read_molecule
+#I'll find out when I grade my work later
+
+#problem 3
+#can't use as many buffer variables as I'm used to because of Tuple restrictions
+def mating_pairs(males: list, females: list) -> list[Tuple]:
+	finalResults = []
+	while (males != []) and (females != []):
+		finalResults.append((males.pop(), females.pop()))
+	return finalResults
+
+#problem 4
+#first draft:
+def listAuthors(filenames: list) -> list:
+	authorList = []
+	for filename in filenames
+		thisFile = open(filename, 'r')
+		contents = thisFile.read()
+		for line in contents:
+			bufferLine = line.lower()
+			if bufferLine.startswith("author"):
+				line.split()
+				authorList.append(line[1:])
+		thisFile.close()
+	return authorList
+
+#problem 5
+def count_values(dictionary: dictionary) -> Int:
+	uniqueValues = []
+	#so it turns out the dictionary.values() method exists:
+	for item in dictionary.values():
+		if item not in uniqueValues:
+			#yeah apparently there's a whole "not in" operator
+			uniqueValues.append(item)
+
+	return len(uniqueValues)
+
+#problem 6
+def leastLikely(particleDict: dictionary) -> value:
+	returnValue = 1.0
+	returnName = "This is a placeholder message"
+	#I think this is how you iterate over the values in a dictionary
+	for item in particleDict:
+		if particleDict[item] < returnValue:
+			returnValue = particleDict[item]
+			returnName = item
+	return returnName
+
+#problem 7
+def count_duplicates(someDictionary: dictionary) -> Int:
+	uniquesList = []
+	dupeCount = 0
+	for item in someDictionary:
+		if someDictionary[item] not in duplicatesList:
+			uniquesList.append(item)
+		else:
+			dupeCount = dupeCount + 1
+	return dupeCount
+
+#problem 8
+def is_balanced(someDict: dictionary) -> Boolean:
+	#normally this is where I would use some kind of assert function to make sure RGB exist
+	#luckily of the actual algorithm, the default methods do my job for me
+	return (someDict[R] + someDict[G] + someDict[B]) == 1.0
+
+#problem 9
+def dict_intersect(dict1: dictionary, dict2: dictionary) -> dictionary:
+	resultsDict = {}
+	#let's see if this is actually really simple
+	for item in dict1.items():
+		if item in dict2.items():
+			resultsDict.update(item)
+	return resultsDict
+
+#problem 10
+def db_headings(headDict: dictionary) -> set:
+	returnList = []
+	bufferDict = headDict.values()
+	for item in bufferDict:
+		listOfKeys = item.keys()
+		for key in listOfKeys:
+			if key not in returnList:
+				returnList.append(key)
+	return returnList
+	#god I hope I formatted that correctly
+
+#problem 11
+def db_consistent(headDict: dictionary) -> Boolean:
+	#this one is just building off the last one
+	targetList = []
+	result = True
+	#first we establish the starting list. compare all others against it
+	bufferDict = headDict.values()
+	for item in bufferDict:
+		listOfKeys = item.keys()
+		if targetList == []:
+			#I have to initialize targetList somehow
+			targetList = listOfKeys
+		elif targetList != listOfKeys:
+			#now we start comparing
+			#if at any point something doesn't match the first list of keys, we already know result is false
+			result = False
+		#and that's all we need to do when iterating
+	return result
+
+#problem 12
+#the way I see it I have two options for dealing with sparse vectors
+#one way is to temporarily expand a sparse vector into a normal vector, only using that memory temporarily
+#possible idea: "resultDict.update(item, subDict1[item] + subDict2[item])"
+#see if I can use the dict.keys() method to get easy lists of keys
+
+#regarding sub-problem C, I can think of only two relevant questions:
+#"Does it matter if we return the last-most 0 value, or just the last-most non-zero value?"
+#and "Do we want just the length of the list of non-sero values, or the length of all values including zero values?"
+
+#I admit I have no idea how to do sparse_add and sparse_dot, because an insert() function on a list TERRIFIES me
+#but let's try it anyway
+
+def sparse_add(subDict1: dictionary, subDict2: dictionary) -> dictionary:
+	#oh geeze I am really stressed about this. I am terrified about inserting hte keys IN ORDER
+	#wait... do I have to?
+	for key in subDict2
+		if subDict1[key]:
+			subDict1.update({key: (subDict1[key] + subDuct2[key])})
+		else:
+			subDict1.update({key: subDuct2[key]})
+	#I am praying this is a good idea
+	#if the key is in dict1 but not in dict2, it will be left alone
+	#if the key is in dict2 but not dict1, it will be added to dict1
+	#if the key is in both, the values will be added and dict1 will be updated
+	return subDict1
+
+#also this function just modifies subList1 instead of using a buffer variable
+
+#and sparse_dot is freakin' easy in comparison. multiplication
+def sparse_dot(subDict1: dictionary, subDict2: dictionary) -> Float:
+	for key in subDict1:
+		if subDict2[key]:
+			subDict1.update({key: (subDict1[key] * subDuct2[key])})
+		else:
+			subDict1.update({key: 0})
+	numsToSum = subDict1.values()
+	return sum(numsToSum)
+
+#now all that's left is to grade my work and see how badly I did

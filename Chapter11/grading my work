@@ -1,0 +1,82 @@
+#problem 1
+#OK I totally see what the official answer does differently
+#the official answer takes advantage of the set data type, and the set.add() method
+#set.add() does all the word of checking for duplicates for me
+#so all the official answer does, is check if set.add() did anything, and if not only add the duplicates to the result
+#this also solves the problem I had where my function was adding all copies of a duplicate, whereas the answer only wants the first one
+
+#problem 2
+#the official answers don't have anything about def read_molecule like my textbook does
+#Their version of problem 2 is my problem 3, and so on for all the other problems
+
+#problem 3
+#well I can see their more graceful solution, but the underlying algorithm is the same
+#the official answer only checks the length of the males list, whereas my version uses a while loop instead
+#and their version uses set.add() instead of my list.append()
+#but the actual logic of the program, I think I got that correct
+
+#problem 4
+#there are some minor differences between my version and the official answer...
+#official:
+for line in pdb_file:
+#versus my version:
+for line in contents:
+bufferLine = line.lower()
+#but for the core logic of the program, I think I got this one right
+
+#problem 5
+#the official answer pointed me to a little feature I missed the first time around: sets automatically strip duplicate values
+#as stated, I missed that detail, so my function checks for duplicate values and appends non-duplicates to a list
+
+#problem 6
+#far as I can tell, I got this one spot-on
+#my main concern was whether I was allowed to use
+for item in someDictionary:
+#and that's exactly what the official answer uses
+
+#problem 7
+#the official answer goes through the lengthy process of safely removing an item from a list
+#I didn't even want to attempt that so I was instead adding items to a new list
+#also there's a minor difference in the logic:
+#the official answer dumps the values into a buffer list and iterates over that, ignoring the keys
+#whereas I iterate over the dictionary's keys to pull the values out one by one
+
+#problem 8
+#seems this isn't a complicated answer
+#The official answer takes a safety step of putting the values into a list() and running the sum() function
+#I didn't bother and just asked for three keys and added the values
+
+#problem 9
+#seems I had the correct structure, the official answer just makes two changes compared to mine
+#my for loop calls the itorator "item" while the official answer calls "(key, value)"
+#and my version uses the "update()" function while the official answer instead uses "dictionary[key] = value"
+
+#problems 10
+#OK seems I misunderstood this one
+#my function dumps the values of the header dictionary into a list of values, while the official answer uses nested for loops
+#and my function uses the "update()" function again, but the answer was actually to use "add()"
+
+#problem 11
+#I was right when I said this problem builds off the previous one, but I'm not confident about my answer
+#the official answer creates a giant list of keys, made of sorted sublists of keys
+#unlike my attempt where I just strip off the first inner dictionary
+#the official answer uses a much better way to iterate. Writing this down so I can remmeber it:
+for itor in range(1, len(innerKeysList)):
+  for anotherItor in range(len(innerKeysList[0])):
+    if innerKeysList[0][itor] != innerKeysList[itor][anotherItor]:
+      return False
+#yeah I can see what I did wrong now
+
+#problem 12
+#I fully admit I was terrified of this for about an hour as I ran through some pseudocode
+#and at least in problem A, it was for nothing
+#I did make a minor mistake. I didn't use a buffer variable like I usually do, but the official answer does ("sumVector")
+#also I called the update() function again, the official answer just uses arithmatic functions
+#a similar minor change in problem B. I use this check:
+if subDict2[key]:
+#while the official answer uses this check:
+if key in subDict2:
+#the occial answer also uses a mcuh simpler set of variables to collect the product
+#I messed around with an entire extra dictionary, the official answer just uses one float
+
+#I think I had the right idea with problem C, I just said it with bad language. We do indeed need to know: how will we know the LENGTH of the sparse vector?

@@ -1,0 +1,89 @@
+#rough drafts for now
+
+#problem 1
+def backupProgram():
+	userInput = input("Please specify a file: ")
+	with open(userInput, 'r') as inputFile:
+		contents = inputFile.read()
+	outputFileName = userInput + ".bak"
+	with open(outputfilename, 'w') as outputFile:
+		outputFile.write(contents)
+
+#problem 2
+with open('alkaline_metals.txt', 'r') as inputFile:
+  elName = []
+  atNum = []
+  atweight = []
+  for line in inputFile:
+    bufferLine = line.split()
+     elName.append(bufferLine[0])
+    atNum.append(bufferLine[1])
+     atWeight.append(bufferLine[2])
+  listOfLists = [elName, atNum, atWeight]
+
+#problem 3
+#"my first instinct is to try using negative indecies. Something like file.read(-1)"
+#"if that doesn't work, I could just read the file forwards, then reverse the contents manually with string.reverse()"
+#"python doccumentation says that 'string.reverse()' doesn't exist. Instead Python has this: string[::-1]"
+
+#problem 4
+#I am a little confused what this problem is asking
+If it just wants me to shove everything from the original text file into a new string, that's easy
+#we keep this part:
+while line.startswith('#'):
+	line = reader.readLine()
+#this moves the cursor to the end of the header
+#then pass the rest of the content into a new variable
+bufferString = reader.read()
+
+#problem 5
+#according to documentation of the read() function it automatically stops at the end of file
+#so my first guess is to just wrap the remaining for loop in an if statement
+if line:
+	for line in reader:
+	line = line.strip()
+#etc. etc.
+
+#problem 6
+#adding a continue statement to the fore loop:
+for line in header
+	if line == '-':
+		continue
+	value = int(line)
+	smallest = min(smallest, value)
+
+#problem 7
+#note to self: use the strip function to remove whitespace, THEN check if the line is empty
+#also can't we just use string.startswith()?
+
+#i think this gets inserted here?
+reading = True
+while reading:
+	line = reader.readline()
+	if line.startswith('CMNT'):
+		continue
+	buffer = line.strip()
+	if buffer == '':
+		continue
+	if line.startswith('END'):
+		reading = false
+	else:
+		parts = line.split()
+		molecule.append(parts[2:])
+return molecule
+
+#problem 8
+#I think I add these lines
+serialCheck = 1
+while reading:
+	...
+	else:
+		parts = line.split()
+		molecule.append(parts[2:])
+		if parts[1] != serialCheck:
+			print("This is an error message about " + molecule[0])
+		serialCheck = serialCheck + 1
+
+#I don't want to modify the parts, I just need to check them
+#I don't know enough about protien data banks to know what the function SHOULD do
+#but I can still print an error message to let the reader know something went wrong with the input file

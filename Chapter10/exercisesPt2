@@ -1,0 +1,68 @@
+#I'm going to have to grade my own work on this one
+
+#problem 1
+#I chose a with statement, the official answer uses a for statement
+#the textbook says I'm allowed to shove an entire file into one variable as such:
+contents = fileName.read()
+#so I chose to do that. The official answer instead looks like this
+filename = input('Which file would you like to back-up? ')
+new_filename = filename + '.bak'
+backup = open(new_filename, 'w')
+for line in open(filename):
+  backup.write(line)
+backup.close()
+#I did forget the close() statement tho
+
+#problem 2
+#I was a little too cautious in my answer, declaring a bunch of buffer variables *just in case*
+#the official answer just looks like this
+alkaline_metals = []
+for line in open('alkaline_metals.txt'):
+  alkaline_metals.append(line.strip().split(' '))
+
+#problem 3
+#official answer confirms that yes, I have to read the file forwards into a buffer List variable,
+#then iterate over over that list backwards
+
+#problem 4
+#I'm still a little confused by the official answer. The official answer calls this function
+line = skip_header(reader).strip()
+#but I thought the point of the exercise was to create it
+#which I tried to do with this:
+while line.startswith('#'):
+	line = reader.readLine()
+#but if skip_header is a real function, glad to know it exists
+
+#problem 5
+#my answer of the simple if loop was correct. I did have one error tho
+#my answer:
+if line:
+#correct answer:
+if line != '':
+
+#problem 6
+#I accidentally cut out this chunk from the code I was supposed to keep:
+line = line.strip()
+#besides that error, my answer is correct
+
+#problem 7
+#one difference I notice between my answer and the official answer,
+#is the official answer calls this code first:
+if line.startswith('END'):
+  reading = False
+#whereas my code calls it last
+#the official answer also completely replaces this code
+parts = line.split()
+molecule.append(parts[2:])
+#with this code
+key, num, atom_type, x, y, z = line.split()
+if molecule == None:
+  molecule = []
+molecule.append([atom_type, x, y, z])
+#my answer does not do any rewriting there; it keeps the original code
+
+#problem 8
+#the official answer prints an error message about the incorrect serial number, but not which molecule had it
+#whereas my answer prints an error message about which molecule had an incorrect serial number, but not what the incorrect number was
+#otherwise I think I got the general structure correct: the line.split() command gives us a serial number
+#and we check that serial number against an itorator variable
