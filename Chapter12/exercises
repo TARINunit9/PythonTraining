@@ -132,3 +132,55 @@ def min_or_max(ourList: list, boolValue) -> tuple:
 (8, 5)
 
 #problem 3
+
+#the way the question is described to be, it feelsl ike 90% of my work is already done for me on page 183
+#all I need to do is replace the print statements with an arithmatic mean algorithm
+
+def hopedale_average(filename):
+	totalPelts = 0
+	numOfYears = 0
+	with open(filename, 'r') as hopedale_file:
+		#file is expected to start with hopedale headers
+		hopedale_file.readLine()
+		data = hopedale_file.readline().rstrip()
+		while data.startswith('#'):
+			data = hopedale_file.readline().rstrip()
+		
+		#now the cursor is looking at data
+		for data in hopedale_file:
+			data = data.rstrip()
+			totalPelts = totalPelts + data
+			numOfYears = numOfYears + 1
+	return (totalPelts / numOfYears)
+
+#problem 4
+#long examples usually not needed
+#we need to describe a "normal" case, such as [1,2,3]
+#a corner case, such as the listed example [1,2]
+#I would also add in a case that deals with negative numbers, such as [-1, 2, 3]
+#and we need to demonstrate a kind of invalid case, such as [1]
+#and you need the examples to have their answers be unmistakable.
+#For example if your example is [0, 1] and the output is (0, 1) there's some ambiguity there
+#the docstring should not make the function look like another function
+
+def find_two_smallest(someList):
+	""" Return a tuple of indicies of the two smallest values in L
+	>>> [1, 2]
+	(0,1)
+	>>> [4, 3, 2, 1]
+	(3, 2)
+	>>> [0, -1, 2, -5]
+	(3, 1)
+	"""
+
+#problem 5
+#trying to pass a list smaller than 2 units in length will probably snag on this line:
+if L[0] < L[1]
+#and throw an undefined or out of bounds error
+#if I had to add that to a docstring
+"""
+>>> [1]
+error message
+"""
+
+#problem 6
