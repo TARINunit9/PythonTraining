@@ -1,0 +1,134 @@
+#problem 1
+#this is just iterating over a string with a single for loop
+#and using a switch statement or four if statements to change the contents
+
+
+Python 3.12.2 (tags/v3.12.2:6abddd9, Feb  6 2024, 21:26:36) [MSC v.1937 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+>>> def compliment(strand: str) -> str:
+... 	newStrand = strand
+... 	for item in newStrand:
+... 		match item:
+... 			case 'A':
+... 				newStrand[item] = 'T'
+... 			case 'T':
+... 				newStrand[item] = 'A'
+... 			case 'C':
+... 				newStrand[item] = 'G'
+... 			case 'G':
+... 				newStrand[item] = 'C'
+... 			case _:
+... 				print("Found a bad base pair")
+... 	return newStrand
+... 
+... 
+>>> compliment("AGGCTTCGAA")
+Traceback (most recent call last):
+  File "<pyshell#1>", line 1, in <module>
+    compliment("AGGCTTCGAA")
+  File "<pyshell#0>", line 6, in compliment
+    newStrand[item] = 'T'
+TypeError: 'str' object does not support item assignment
+
+#oops, let me fix that up
+
+>>> def compliment(strand: str) -> str:
+... 	newStrand = ''
+... 	for item in strand:
+... 		match item:
+... 			case 'A':
+... 				newStrand = newStrand + 'T'
+... 			case 'T':
+... 				newStrand = newStrand + 'A'
+... 			case 'C':
+... 				newStrand = newStrand + 'G'
+... 			case 'G':
+... 				newStrand = newStrand + 'C'
+... 			case _:
+... 				print("Found a bad base pair")
+... 	return newStrand
+... 
+>>> compliment("AGGCTTCGAA")
+'TCCGAAGCTT'
+#success
+
+#problem 2
+#ok the for loop first...
+minValue = ourList(0)
+indexNumber = 0
+for itor in range(1, len(ourList)):
+  if ourList[itor] < minValue:
+    minValue = ourList[itor]
+    indexNumber = itor
+
+#and now the function
+def min_index(ourList: list) -> tuple:
+  minValue = ourList[0]
+  indexNumber = 0
+  for itor in range(1, len(ourList)):
+    if ourList[itor] < minValue:
+      minValue = ourList[itor]
+      indexNumber = itor
+  returnTuple = (minValue, indexNumber)
+  return returnTuple
+
+  #and the testing
+  >>> def min_index(ourList: list) -> tuple:
+...   minValue = ourList[0]
+...   indexNumber = 0
+...   for itor in range(1, len(ourList)):
+...     if ourList[itor] < minValue:
+...       minValue = ourList[itor]
+...       indexNumber = itor
+...   returnTuple = (minValue, indexNumber)
+...   return returnTuple
+... 
+>>> sampleList = [5,6,7,4,3,8]
+>>> min_index(sampleList)
+(3, 4)
+
+#min_or_max? well ok
+
+def min_or_max(ourList: list, boolValue) -> tuple:
+  minValue = ourList[0]
+  maxValue = ourList[0]
+  minIndexNumber = 0
+  maxIndexNumber = 0
+  for itor in range(1, len(ourList)):
+    if ourList[itor] < minValue:
+      minValue = ourList[itor]
+      minIndexNumber = itor
+    if ourList[itor] > maxValue:
+      maxValue = ourList[itor]
+      maxIndexNumber = itor
+  if boolValue == True:
+    returnTuple = (minValue, minIndexNumber)
+  else:
+    returnTuple = (maxValue, maxIndexNumber)
+  return returnTuple
+
+#and the testing
+>>> def min_or_max(ourList: list, boolValue) -> tuple:
+...   minValue = ourList[0]
+...   maxValue = ourList[0]
+...   minIndexNumber = 0
+...   maxIndexNumber = 0
+...   for itor in range(1, len(ourList)):
+...     if ourList[itor] < minValue:
+...       minValue = ourList[itor]
+...       minIndexNumber = itor
+...     if ourList[itor] > maxValue:
+...       maxValue = ourList[itor]
+...       maxIndexNumber = itor
+...   if boolValue == True:
+...     returnTuple = (minValue, minIndexNumber)
+...   else:
+...     returnTuple = (maxValue, maxIndexNumber)
+...   return returnTuple
+... 
+>>> min_or_max(sampleList, True)
+(3, 4)
+>>> min_or_max(sampleList, False)
+(8, 5)
+
+#problem 3
