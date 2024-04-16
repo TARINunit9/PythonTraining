@@ -223,3 +223,24 @@ nextSmallest = tempList[1]
 *I'll be honest, I don't know how to do this without completely throwing out the entire idea of "sort, index, return"
 #the entire idea of sorting the list is fundamentally flawed IF we want to preserve the index values, it just won't work
 #oh and the official answers don't even have this problem, they skip this one and only this one
+
+#problem 7
+#this one depends on whether they want me to change the original variable or just return a new list
+
+#for this one I'm just returning a new list that's sorted, instead of modifying the original list
+def dutch_flag(colors: list[str]) -> list:
+	redColors = []
+	greenColors = []
+	blueColors = []
+	for item in colors:
+		if item == 'red':
+			redColors.append('red')
+		elif item == 'green':
+			greenColors.append('green')
+		elif item == 'blue':
+			blueColors.append('blue')
+		else:
+			print("This list has invalid colors")
+			return colors
+	finalList = redColors + greenColors + blueColors
+	return finalList
