@@ -115,6 +115,7 @@ First, establish an itorator that compares list[X] with list[X + 1]
 If X is larger, swap their positions. Then increment the itorator
 Iterate over the list over and over until it is sorted
 
+#here's my first draft
 def bubbleSortTime(someList: list) -> list:
   isSorted = False
   listLength = len(someList) - 1
@@ -136,5 +137,34 @@ def bubbleSortTime(someList: list) -> list:
         isSorted = False
   return someList
 
-#need to debug this
-#testerList = [3, 4, 7, 1, 2, 5]
+#and here's the working second draft
+Python 3.12.2 (tags/v3.12.2:6abddd9, Feb  6 2024, 21:26:36) [MSC v.1937 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+>>> def sortTester(someList: list):
+... 	isSorted = True
+... 	#print("debug4")
+... 	for itor in range(0, len(someList) - 1):
+... 		if someList[itor] > someList[itor + 1]:
+... 			#print("debug5")
+... 			isSorted = False
+... 	return isSorted
+... 
+...     
+>>> def bubble_sort(someList: list) -> list:
+... 	listLength = len(someList)
+... 	while sortTester(someList) == False:
+... 		#print("debug1")
+... 		for y in range(1, listLength):
+... 			#print("debug2")
+... 			if someList[y-1] > someList[y]:
+... 				#print("debug3")
+... 				someList[y-1], someList[y] = someList[y], someList[y-1]
+... 	return someList
+... 
+...     
+>>> testerList = [3, 4, 7, 1, 2, 5]
+>>> bubble_sort(testerList)
+[1, 2, 3, 4, 5, 7]
+#those debug statements were to track an infinite loop bug. But I think they will come in handy for problem 6
+
+#problem 6
