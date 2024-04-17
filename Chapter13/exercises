@@ -137,3 +137,4 @@ def bubbleSortTime(someList: list) -> list:
   return someList
 
 #need to debug this
+#testerList = [3, 4, 7, 1, 2, 5]
