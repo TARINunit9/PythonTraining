@@ -111,3 +111,29 @@ def linearForNeg(lst: list, value: Any) -> int:
 
 #problem 5
 Bubble sort time
+First, establish an itorator that compares list[X] with list[X + 1]
+If X is larger, swap their positions. Then increment the itorator
+Iterate over the list over and over until it is sorted
+
+def bubbleSortTime(someList: list) -> list:
+  isSorted = False
+  listLength = len(someList) - 1
+  while isSorted == False:
+    x = 0
+    y = 1
+    sortItor = 0
+    while y < listLength:
+      if someList[x] > someList[y]:
+        temp = someList[x]
+        someList[x] = someList[y]
+        someList[y] = temp
+      x += 1
+      y += 1
+    #also we have to check if the darn thing is sorted
+    isSorted = True
+    while sortItor < listLength:
+      if someList[sortItor] > someList[sortItor + 1]:
+        isSorted = False
+  return someList
+
+#need to debug this
