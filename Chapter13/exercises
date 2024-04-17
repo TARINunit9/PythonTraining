@@ -13,28 +13,28 @@ def linearWhileNeg(lst: list, value: Any) -> int:
   else:
     return i
 
-  #for loop version
-  #spoilers, this first draft is wrong
-  def linearForNeg(lst: list, value: Any) -> int:
-    i = -1
-    for i in range(-1, (len(lst) * -1)):
-      if lst[i] == value:
-        return i
-    return 0
-
-  #sentinel search version
-  #this first draft doesn't work either'
-  def SentinelNeg(lst: list, value: Any) -> int:
-    #insert the value at the, ahem, "end"
-    lst.insert((len(lst)*-1), value)
-    i = -1
-    while lst[i] != value:
-      i = i - 1
-    lst.remove((len(lst)*-1))
-    if i == len(lst)*-1:
-      return 0
-    else:
+#for loop version
+#spoilers, this first draft is wrong
+def linearForNeg(lst: list, value: Any) -> int:
+  i = -1
+  for i in range(-1, (len(lst) * -1)):
+    if lst[i] == value:
       return i
+  return 0
+
+#sentinel search version
+#this first draft doesn't work either'
+def SentinelNeg(lst: list, value: Any) -> int:
+  #insert the value at the, ahem, "end"
+  lst.insert((len(lst)*-1), value)
+  i = -1
+  while lst[i] != value:
+    i = i - 1
+  lst.remove((len(lst)*-1))
+  if i == len(lst)*-1:
+    return 0
+  else:
+    return i
 
 #tests
 >>> testList = [1, 2, 3, 4, 5]
@@ -52,4 +52,44 @@ Traceback (most recent call last):
   File "<pyshell#13>", line 7, in SentinelNeg
     lst.remove((len(lst)*-1))
 ValueError: list.remove(x): x not in list
-#ouch, back to the drawoing board
+#ouch, back to the drawing board
+
+#problem 1 second drafts
+def linearSentinelNeg(lst: list, value: Any) -> int:
+    lst.insert((len(lst)*-1), value)
+    i = -1
+    while lst[i] != value:
+      i = i - 1
+    del lst[len(lst)*-1]
+    if i == len(lst)*-1:
+      return 0
+    else:
+      return i
+>>> testList = [1, 2, 3, 4, 5]
+>>> linearSentinelNeg(testList, 3)
+-3
+
+def linearForNeg(lst: list, value: Any) -> int:
+  i = -1
+  for i in range((len(lst) * -1), -1):
+    if lst[i] == value:
+      return i
+  return 0
+>>> linearForNeg(testList, 3)
+-3
+#yay all three work now
+
+#problem 2
+#assuming list [1, 2, 3, 4, 3, 5] and target value 3
+#negative while and negative Sentinel will find the right-most 3
+#negative for will find the leftmost 3
+
+#problem 3
+#the book says Binary Search has O(log2 N)
+#sorting costs O(N log2 N)
+#So I would assume we have to run a search algorithm at least N times before "sort + binary search" becomes more efficient than "linear search"
+
+#problem 4
+#our list is [6, 5, 4, 3, 7, 1, 2]
+#should I write this out by hand or just add a print statement to the sorts?
+#let's write it out by hand for now
