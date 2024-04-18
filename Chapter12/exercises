@@ -1,0 +1,246 @@
+#problem 1
+#this is just iterating over a string with a single for loop
+#and using a switch statement or four if statements to change the contents
+
+
+Python 3.12.2 (tags/v3.12.2:6abddd9, Feb  6 2024, 21:26:36) [MSC v.1937 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+>>> def compliment(strand: str) -> str:
+... 	newStrand = strand
+... 	for item in newStrand:
+... 		match item:
+... 			case 'A':
+... 				newStrand[item] = 'T'
+... 			case 'T':
+... 				newStrand[item] = 'A'
+... 			case 'C':
+... 				newStrand[item] = 'G'
+... 			case 'G':
+... 				newStrand[item] = 'C'
+... 			case _:
+... 				print("Found a bad base pair")
+... 	return newStrand
+... 
+... 
+>>> compliment("AGGCTTCGAA")
+Traceback (most recent call last):
+  File "<pyshell#1>", line 1, in <module>
+    compliment("AGGCTTCGAA")
+  File "<pyshell#0>", line 6, in compliment
+    newStrand[item] = 'T'
+TypeError: 'str' object does not support item assignment
+
+#oops, let me fix that up
+
+>>> def compliment(strand: str) -> str:
+... 	newStrand = ''
+... 	for item in strand:
+... 		match item:
+... 			case 'A':
+... 				newStrand = newStrand + 'T'
+... 			case 'T':
+... 				newStrand = newStrand + 'A'
+... 			case 'C':
+... 				newStrand = newStrand + 'G'
+... 			case 'G':
+... 				newStrand = newStrand + 'C'
+... 			case _:
+... 				print("Found a bad base pair")
+... 	return newStrand
+... 
+>>> compliment("AGGCTTCGAA")
+'TCCGAAGCTT'
+#success
+
+#problem 2
+#ok the for loop first...
+minValue = ourList(0)
+indexNumber = 0
+for itor in range(1, len(ourList)):
+  if ourList[itor] < minValue:
+    minValue = ourList[itor]
+    indexNumber = itor
+
+#and now the function
+def min_index(ourList: list) -> tuple:
+  minValue = ourList[0]
+  indexNumber = 0
+  for itor in range(1, len(ourList)):
+    if ourList[itor] < minValue:
+      minValue = ourList[itor]
+      indexNumber = itor
+  returnTuple = (minValue, indexNumber)
+  return returnTuple
+
+  #and the testing
+  >>> def min_index(ourList: list) -> tuple:
+...   minValue = ourList[0]
+...   indexNumber = 0
+...   for itor in range(1, len(ourList)):
+...     if ourList[itor] < minValue:
+...       minValue = ourList[itor]
+...       indexNumber = itor
+...   returnTuple = (minValue, indexNumber)
+...   return returnTuple
+... 
+>>> sampleList = [5,6,7,4,3,8]
+>>> min_index(sampleList)
+(3, 4)
+
+#min_or_max? well ok
+
+def min_or_max(ourList: list, boolValue) -> tuple:
+  minValue = ourList[0]
+  maxValue = ourList[0]
+  minIndexNumber = 0
+  maxIndexNumber = 0
+  for itor in range(1, len(ourList)):
+    if ourList[itor] < minValue:
+      minValue = ourList[itor]
+      minIndexNumber = itor
+    if ourList[itor] > maxValue:
+      maxValue = ourList[itor]
+      maxIndexNumber = itor
+  if boolValue == True:
+    returnTuple = (minValue, minIndexNumber)
+  else:
+    returnTuple = (maxValue, maxIndexNumber)
+  return returnTuple
+
+#and the testing
+>>> def min_or_max(ourList: list, boolValue) -> tuple:
+...   minValue = ourList[0]
+...   maxValue = ourList[0]
+...   minIndexNumber = 0
+...   maxIndexNumber = 0
+...   for itor in range(1, len(ourList)):
+...     if ourList[itor] < minValue:
+...       minValue = ourList[itor]
+...       minIndexNumber = itor
+...     if ourList[itor] > maxValue:
+...       maxValue = ourList[itor]
+...       maxIndexNumber = itor
+...   if boolValue == True:
+...     returnTuple = (minValue, minIndexNumber)
+...   else:
+...     returnTuple = (maxValue, maxIndexNumber)
+...   return returnTuple
+... 
+>>> min_or_max(sampleList, True)
+(3, 4)
+>>> min_or_max(sampleList, False)
+(8, 5)
+
+#problem 3
+
+#the way the question is described to be, it feelsl ike 90% of my work is already done for me on page 183
+#all I need to do is replace the print statements with an arithmatic mean algorithm
+
+def hopedale_average(filename):
+	totalPelts = 0
+	numOfYears = 0
+	with open(filename, 'r') as hopedale_file:
+		#file is expected to start with hopedale headers
+		hopedale_file.readLine()
+		data = hopedale_file.readline().rstrip()
+		while data.startswith('#'):
+			data = hopedale_file.readline().rstrip()
+		
+		#now the cursor is looking at data
+		for data in hopedale_file:
+			data = data.rstrip()
+			totalPelts = totalPelts + data
+			numOfYears = numOfYears + 1
+	return (totalPelts / numOfYears)
+
+#problem 4
+#long examples usually not needed
+#we need to describe a "normal" case, such as [1,2,3]
+#a corner case, such as the listed example [1,2]
+#I would also add in a case that deals with negative numbers, such as [-1, 2, 3]
+#and we need to demonstrate a kind of invalid case, such as [1]
+#and you need the examples to have their answers be unmistakable.
+#For example if your example is [0, 1] and the output is (0, 1) there's some ambiguity there
+#the docstring should not make the function look like another function
+
+def find_two_smallest(someList):
+	""" Return a tuple of indicies of the two smallest values in L
+	>>> [1, 2]
+	(0,1)
+	>>> [4, 3, 2, 1]
+	(3, 2)
+	>>> [0, -1, 2, -5]
+	(3, 1)
+	"""
+
+#problem 5
+#trying to pass a list smaller than 2 units in length will probably snag on this line:
+if L[0] < L[1]
+#and throw an undefined or out of bounds error
+#if I had to add that to a docstring
+"""
+>>> [1]
+error message
+"""
+
+#problem 6
+#alright instead of trying to parse them out with my human eyes, let's just type them out in python
+#first let's test their find remove find algorithm:
+>>> def find_two_smallest_remove(L: list[float]) -> tuple[int, int]:
+...     smallest = min(L)
+...     min1 = L.index(smallest)
+...     L.remove(smallest)
+...     nextSmallest = min(L)
+...     min2 = L.index(nextSmallest)
+...     L.insert(min1, smallest)
+...     if min1 <= min2:
+...         min2 += 1
+...     return (min1, min2)
+... 
+>>> testList = [1, 2, 3, 0, 0, 4, 5, 6]
+>>> find_two_smallest_remove(testList)
+(3, 4)
+
+#now let's test their sort algorithm:
+>>> def find_two_smallest_sort(L: list[float]) -> tuple[int, int]:
+...     tempList = sorted(L)
+...     smallest = tempList[0]
+...     nextSmallest = tempList[1]
+...     min1 = L.index(smallest)
+...     min2 = L.index(nextSmallest)
+...     return (min1, min2)
+... 
+>>> find_two_smallest_sort(testList)
+(3, 3)
+
+#and we've found our loser
+#but how do we fix this?
+#I've done some testing, and the problem is these statements
+smallest = tempList[0]
+nextSmallest = tempList[1]
+#smallest and nextSmallest aren't just equivilent, they're the same address in memory
+#I tried removing tempList[0] but even that doesn't fix it
+*I'll be honest, I don't know how to do this without completely throwing out the entire idea of "sort, index, return"
+#the entire idea of sorting the list is fundamentally flawed IF we want to preserve the index values, it just won't work
+#oh and the official answers don't even have this problem, they skip this one and only this one
+
+#problem 7
+#this one depends on whether they want me to change the original variable or just return a new list
+
+#for this one I'm just returning a new list that's sorted, instead of modifying the original list
+def dutch_flag(colors: list[str]) -> list:
+	redColors = []
+	greenColors = []
+	blueColors = []
+	for item in colors:
+		if item == 'red':
+			redColors.append('red')
+		elif item == 'green':
+			greenColors.append('green')
+		elif item == 'blue':
+			blueColors.append('blue')
+		else:
+			print("This list has invalid colors")
+			return colors
+	finalList = redColors + greenColors + blueColors
+	return finalList

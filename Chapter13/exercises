@@ -1,0 +1,284 @@
+#problem 1
+#"I think we can just use negative indecies, at least on a cenceptual level. Let's write these out"
+
+from typing import Any
+#while loop version
+def linearWhileNeg(lst: list, value: Any) -> int:
+  i = -1
+  listLength = len(lst) * -1
+  while i != listLength and lst[i] != value:
+    i = i - 1
+  if i == listLength:
+    return 0
+  else:
+    return i
+
+#for loop version
+#spoilers, this first draft is wrong
+def linearForNeg(lst: list, value: Any) -> int:
+  i = -1
+  for i in range(-1, (len(lst) * -1)):
+    if lst[i] == value:
+      return i
+  return 0
+
+#sentinel search version
+#this first draft doesn't work either'
+def SentinelNeg(lst: list, value: Any) -> int:
+  #insert the value at the, ahem, "end"
+  lst.insert((len(lst)*-1), value)
+  i = -1
+  while lst[i] != value:
+    i = i - 1
+  lst.remove((len(lst)*-1))
+  if i == len(lst)*-1:
+    return 0
+  else:
+    return i
+
+#tests
+>>> testList = [1, 2, 3, 4, 5]
+>>> linearWhileNeg(testList, 3)
+-3
+#so far so good
+>>> linearForNeg(testList, 3)
+0
+#looks like the range() function doesn't want to do that'
+
+>>> SentinelNeg(testList, 3)
+Traceback (most recent call last):
+  File "<pyshell#14>", line 1, in <module>
+    SentinelNeg(testList, 3)
+  File "<pyshell#13>", line 7, in SentinelNeg
+    lst.remove((len(lst)*-1))
+ValueError: list.remove(x): x not in list
+#ouch, back to the drawing board
+
+#problem 1 second drafts
+def linearSentinelNeg(lst: list, value: Any) -> int:
+    lst.insert((len(lst)*-1), value)
+    i = -1
+    while lst[i] != value:
+      i = i - 1
+    del lst[len(lst)*-1]
+    if i == len(lst)*-1:
+      return 0
+    else:
+      return i
+>>> testList = [1, 2, 3, 4, 5]
+>>> linearSentinelNeg(testList, 3)
+-3
+
+def linearForNeg(lst: list, value: Any) -> int:
+  i = -1
+  for i in range((len(lst) * -1), -1):
+    if lst[i] == value:
+      return i
+  return 0
+>>> linearForNeg(testList, 3)
+-3
+#yay all three work now
+
+#problem 2
+#assuming list [1, 2, 3, 4, 3, 5] and target value 3
+#negative while and negative Sentinel will find the right-most 3
+#negative for will find the leftmost 3
+
+#problem 3
+#the book says Binary Search has O(log2 N)
+#sorting costs O(N log2 N)
+#So I would assume we have to run a search algorithm at least N times before "sort + binary search" becomes more efficient than "linear search"
+
+#problem 4
+#our list is [6, 5, 4, 3, 7, 1, 2]
+#should I write this out by hand or just add a print statement to the sorts?
+#let's write it out by hand for now
+
+#selection sort:
+[6, 5, 4, 3, 7, 1, 2]
+[1, 5, 4, 3, 7, 6, 2]
+[1, 2, 4, 3, 7, 6, 5]
+[1, 2, 3, 4, 7, 6, 5]
+[1, 2, 3, 4, 5, 6, 7]
+
+#insertion sort:
+[6, 5, 4, 3, 7, 1, 2]
+[5, 6, 4, 3, 7, 1, 2]
+[4, 5, 6, 3, 7, 1, 2]
+[3, 4, 5, 6, 7, 1, 2]
+[1, 3, 4, 5, 6, 7, 2]
+[1, 2, 3, 4, 5, 6, 7]
+
+#problem 5
+Bubble sort time
+First, establish an itorator that compares list[X] with list[X + 1]
+If X is larger, swap their positions. Then increment the itorator
+Iterate over the list over and over until it is sorted
+
+#here's my first draft
+def bubbleSortTime(someList: list) -> list:
+  isSorted = False
+  listLength = len(someList) - 1
+  while isSorted == False:
+    x = 0
+    y = 1
+    sortItor = 0
+    while y < listLength:
+      if someList[x] > someList[y]:
+        temp = someList[x]
+        someList[x] = someList[y]
+        someList[y] = temp
+      x += 1
+      y += 1
+    #also we have to check if the darn thing is sorted
+    isSorted = True
+    while sortItor < listLength:
+      if someList[sortItor] > someList[sortItor + 1]:
+        isSorted = False
+  return someList
+
+#and here's the working second draft
+Python 3.12.2 (tags/v3.12.2:6abddd9, Feb  6 2024, 21:26:36) [MSC v.1937 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+>>> def sortTester(someList: list):
+... 	isSorted = True
+... 	#print("debug4")
+... 	for itor in range(0, len(someList) - 1):
+... 		if someList[itor] > someList[itor + 1]:
+... 			#print("debug5")
+... 			isSorted = False
+... 	return isSorted
+... 
+...     
+>>> def bubble_sort(someList: list) -> list:
+... 	listLength = len(someList)
+... 	while sortTester(someList) == False:
+... 		#print("debug1")
+... 		for y in range(1, listLength):
+... 			#print("debug2")
+... 			if someList[y-1] > someList[y]:
+... 				#print("debug3")
+... 				someList[y-1], someList[y] = someList[y], someList[y-1]
+... 	return someList
+... 
+...     
+>>> testerList = [3, 4, 7, 1, 2, 5]
+>>> bubble_sort(testerList)
+[1, 2, 3, 4, 5, 7]
+#those debug statements were to track an infinite loop bug. But I think they will come in handy for problem 7
+
+#problem 6
+#I think the only thing that needs to change with this "front-loaded bubble sort" is to change one idea:
+#instead of comparing list[itor] > list[itor+1] and pushing the greater item to the end
+#we compare list[itor+1] < list[itor] and pushing the smaller item to the start
+#alternatively we can use negative indicies, comparing list[itor-1] > list[itor]
+#realistically there's almost no difference in either case
+
+#this took a couple tries before I could get the negative indecies to behave, i had to abandon the for loop
+def bubble_sort_2(someList: list) -> list:
+  listLength = (len(someList)*-1)
+  while sortTester(someList) == False::
+    y = -1
+    while y > listLength:
+      if someList[y] < someList[y-1]:
+        someList[y], someList[y-1] = someList[y-1], someList[y]
+      y -= 1
+  return someList
+
+>>> testerList = [3, 4, 7, 1, 2, 5]
+>>> def bubble_sort_2(someList: list) -> list:
+...   listLength = (len(someList)*-1)
+...   while sortTester(someList) == False:
+...     y = -1
+...     while y > listLength:
+...       if someList[y] < someList[y-1]:
+...         someList[y], someList[y-1] = someList[y-1], someList[y]
+...       y -= 1
+...   return someList
+... 
+>>> bubble_sort_2(testerList)
+[1, 2, 3, 4, 5, 7]
+
+#problem 7
+#alright so let's add in some big-O tracker variables
+>>> def sortTester(someList: list):
+... 	isSorted = True
+... 	for itor in range(0, len(someList) - 1):
+... 		if someList[itor] > someList[itor + 1]:
+... 			isSorted = False
+... 	return isSorted
+... 
+...     
+>>> def bubble_sort(someList: list) -> list:
+... 	runTime = 0
+... 	listLength = len(someList)
+... 	while sortTester(someList) == False:
+... 		#add the cost of sortTester to the runTime
+... 		runTime = runTime + listLength
+... 		for y in range(1, listLength):
+... 			runTime += 1
+... 			if someList[y-1] > someList[y]:
+... 				runTime += 1
+... 				someList[y-1], someList[y] = someList[y], someList[y-1]
+... 	print(runTime)
+... 	return someList
+
+#NOTE: in the above code I count both comparisons and swaps
+
+#best-case
+>>> bestCase = [1,2,3,4,5,6,7]
+>>> bubble_sort(bestCase)
+0
+[1, 2, 3, 4, 5, 6, 7]
+
+#here's an average-case:
+>>> averageCase = [3, 4, 7, 1, 2, 6, 5]
+>>> bubble_sort(averageCase)
+48
+[1, 2, 3, 4, 5, 6, 7]
+
+#now a worst-case:
+anotherTest = [7,6,5,4,3,2,1]
+bubble_sort(anotherTest)
+99
+[1, 2, 3, 4, 5, 6, 7]
+
+#after running these tests I did it again without counting swaps
+>>> averageCase = [3, 4, 7, 1, 2, 6, 5]
+>>> bubble_sort(averageCase)
+39
+[1, 2, 3, 4, 5, 6, 7]
+>>> anotherTest = [7,6,5,4,3,2,1]
+>>> bubble_sort(anotherTest)
+78
+[1, 2, 3, 4, 5, 6, 7]
+
+#Either way, I conclude the big-O notation of bubble sort is N^2
+
+#problem 8
+#the rest of the paragraph spells out the flaw asked for by the question: it assumes inserting is the same cost as searching
+#in general, binary search's real world efficiency depends on whether inserting has more than or the same cost as searching
+#and in problems where inserting is expensive, which is the case when inserting means right-shifting the list? the book points out the real cost is N(N+logN) which is almost as bad as N^2
+
+#problem 9
+#fundamentally, this question is describing the difference between For loops and While loops
+#For loops run until we are out of valid values of loop index
+#While loops run until the work is done
+#in theory, there is a third type of loop with continue/break, which run "until something abnormal happens"
+#but I still consider this to just be While loops
+#I personally prefer While loops, I would rather just set one condition with a binary yes/no state, than try to guess the range of items in the future
+
+#problem 10
+#my first instinct is to change the while loop to this:
+while i1 != len(L1) or i2 != len(L2):
+  if L1[i1] <= L2[i2]:
+    newL.append(L1[i1])
+    i1 += 1
+  elif L2[i2] < L1[i1]:
+    newL.append(L2[i2])
+  elif i1 == len(L1):
+    newL.append(L2[i2])
+  else:
+    newL.append(L1[i1])
+return newL
+#just extend the logic to be sure we will finally be done with all of L1 and L2, instead of catching the circumstance that they aren't done
