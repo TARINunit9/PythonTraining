@@ -165,6 +165,94 @@ Type "help", "copyright", "credits" or "license()" for more information.
 >>> testerList = [3, 4, 7, 1, 2, 5]
 >>> bubble_sort(testerList)
 [1, 2, 3, 4, 5, 7]
-#those debug statements were to track an infinite loop bug. But I think they will come in handy for problem 6
+#those debug statements were to track an infinite loop bug. But I think they will come in handy for problem 7
 
 #problem 6
+#I think the only thing that needs to change with this "front-loaded bubble sort" is to change one idea:
+#instead of comparing list[itor] > list[itor+1] and pushing the greater item to the end
+#we compare list[itor+1] < list[itor] and pushing the smaller item to the start
+#alternatively we can use negative indicies, comparing list[itor-1] > list[itor]
+#realistically there's almost no difference in either case
+
+#this took a couple tries before I could get the negative indecies to behave, i had to abandon the for loop
+def bubble_sort_2(someList: list) -> list:
+  listLength = (len(someList)*-1)
+  while sortTester(someList) == False::
+    y = -1
+    while y > listLength:
+      if someList[y] < someList[y-1]:
+        someList[y], someList[y-1] = someList[y-1], someList[y]
+      y -= 1
+  return someList
+
+>>> testerList = [3, 4, 7, 1, 2, 5]
+>>> def bubble_sort_2(someList: list) -> list:
+...   listLength = (len(someList)*-1)
+...   while sortTester(someList) == False:
+...     y = -1
+...     while y > listLength:
+...       if someList[y] < someList[y-1]:
+...         someList[y], someList[y-1] = someList[y-1], someList[y]
+...       y -= 1
+...   return someList
+... 
+>>> bubble_sort_2(testerList)
+[1, 2, 3, 4, 5, 7]
+
+#problem 7
+#alright so let's add in some big-O tracker variables
+>>> def sortTester(someList: list):
+... 	isSorted = True
+... 	for itor in range(0, len(someList) - 1):
+... 		if someList[itor] > someList[itor + 1]:
+... 			isSorted = False
+... 	return isSorted
+... 
+...     
+>>> def bubble_sort(someList: list) -> list:
+... 	runTime = 0
+... 	listLength = len(someList)
+... 	while sortTester(someList) == False:
+... 		#add the cost of sortTester to the runTime
+... 		runTime = runTime + listLength
+... 		for y in range(1, listLength):
+... 			runTime += 1
+... 			if someList[y-1] > someList[y]:
+... 				runTime += 1
+... 				someList[y-1], someList[y] = someList[y], someList[y-1]
+... 	print(runTime)
+... 	return someList
+
+#NOTE: in the above code I count both comparisons and swaps
+
+#best-case
+>>> bestCase = [1,2,3,4,5,6,7]
+>>> bubble_sort(bestCase)
+0
+[1, 2, 3, 4, 5, 6, 7]
+
+#here's an average-case:
+>>> averageCase = [3, 4, 7, 1, 2, 6, 5]
+>>> bubble_sort(averageCase)
+48
+[1, 2, 3, 4, 5, 6, 7]
+
+#now a worst-case:
+anotherTest = [7,6,5,4,3,2,1]
+bubble_sort(anotherTest)
+99
+[1, 2, 3, 4, 5, 6, 7]
+
+#after running these tests I did it again without counting swaps
+>>> averageCase = [3, 4, 7, 1, 2, 6, 5]
+>>> bubble_sort(averageCase)
+39
+[1, 2, 3, 4, 5, 6, 7]
+>>> anotherTest = [7,6,5,4,3,2,1]
+>>> bubble_sort(anotherTest)
+78
+[1, 2, 3, 4, 5, 6, 7]
+
+#Either way, I conclude the big-O notation of bubble sort is N^2
+
+#problem 8
