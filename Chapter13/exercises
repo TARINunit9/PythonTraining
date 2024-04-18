@@ -256,3 +256,29 @@ bubble_sort(anotherTest)
 #Either way, I conclude the big-O notation of bubble sort is N^2
 
 #problem 8
+#the rest of the paragraph spells out the flaw asked for by the question: it assumes inserting is the same cost as searching
+#in general, binary search's real world efficiency depends on whether inserting has more than or the same cost as searching
+#and in problems where inserting is expensive, which is the case when inserting means right-shifting the list? the book points out the real cost is N(N+logN) which is almost as bad as N^2
+
+#problem 9
+#fundamentally, this question is describing the difference between For loops and While loops
+#For loops run until we are out of valid values of loop index
+#While loops run until the work is done
+#in theory, there is a third type of loop with continue/break, which run "until something abnormal happens"
+#but I still consider this to just be While loops
+#I personally prefer While loops, I would rather just set one condition with a binary yes/no state, than try to guess the range of items in the future
+
+#problem 10
+#my first instinct is to change the while loop to this:
+while i1 != len(L1) or i2 != len(L2):
+  if L1[i1] <= L2[i2]:
+    newL.append(L1[i1])
+    i1 += 1
+  elif L2[i2] < L1[i1]:
+    newL.append(L2[i2])
+  elif i1 == len(L1):
+    newL.append(L2[i2])
+  else:
+    newL.append(L1[i1])
+return newL
+#just extend the logic to be sure we will finally be done with all of L1 and L2, instead of catching the circumstance that they aren't done
