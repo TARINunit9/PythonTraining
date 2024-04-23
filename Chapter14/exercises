@@ -1,4 +1,53 @@
 #problem 1
+class Country:
+	"""We're defining a country! Needs name, population, area
+	"""
+	def __init__(self, name: str, population: int, area: float) -> None:
+		self.name = name
+		self.population = population
+		self.area = area
+	def is_larger(self, other: Country) -> boolean:
+		return self.area > other.area
+	def population_density(self) -> float:
+		return (self.population/self.area)
+	def __str__(self) -> str:
+		return '{0} has a population of {1} and is {2} square km'.format(self.name, self.population, self.area)
+	def __repr__(self) -> str:
+		return '[Country({0}, {1}, {2})]'.format(self.name, self.population, self.area)
 
-__init__ Country
-four parameters: the fact i want to make a country, the name, the population, and the area
+#problem 2
+import Country
+class Continent:
+	"""Need total_population and __str__
+	"""
+	def __init__(self, name: str, countries: List[Country]) -> None:
+		self.name = name
+		self.countries = countries
+	def total_population(self) -> int:
+		totalPop = 0
+		for country in self.countries:
+			totalPop = totalPop + country.population
+		return totalPop
+	def __str__(self) -> str:
+		finalString = '{0}'.format(self.name)
+		for country in self.countries:
+			finalString = finalstring + str(country)
+		return finalString
+	
+#problem 3
+#assuming class Student:
+  def __str__(self) ->:
+    """'{Member info of name and address and email}; student ID 12345; Current courses: x, y, z; Courses taken: a, b, c'
+    """
+    return '{0}; student ID {1}; Current courses: {2}; Courses taken: {3}'.format(super().__str__, student.id, student.current_courses, student.courses_taken)
+
+#problem 4
+class Nematode:
+  def __init__(self, length: float, gender: str, age: int) -> None:
+    self.length = length
+    self.gender = gender
+    self.age = age
+  def __str__(self) -> str:
+    return '{0} mm long, {1}, {2} days old'.format(self.length, self.gender, self.age)
+  def __repr__(self) -> str:
+    return '[Nematode({0}, {1}, {2})]'.format(self.length, self.gender, self.age)
