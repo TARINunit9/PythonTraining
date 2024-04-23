@@ -36,10 +36,13 @@ class Continent:
 	
 #problem 3
 #assuming class Student:
-  def __str__(self) ->:
+  def __str__(self) -> str:
     """'{Member info of name and address and email}; student ID 12345; Current courses: x, y, z; Courses taken: a, b, c'
     """
-    return '{0}; student ID {1}; Current courses: {2}; Courses taken: {3}'.format(super().__str__, student.id, student.current_courses, student.courses_taken)
+    return '{0}; student ID {1}; Current courses: {2}; Courses taken: {3}'.format(super().__str__, self.id, self.current_courses, self.courses_taken)
+  def __repr__(self) -> str:
+    #should I just keep all my repr functions standardized?
+    return '[Student({0}, {1})]'.format(super().__repr__, self.id)
 
 #problem 4
 class Nematode:
@@ -51,3 +54,26 @@ class Nematode:
     return '{0} mm long, {1}, {2} days old'.format(self.length, self.gender, self.age)
   def __repr__(self) -> str:
     return '[Nematode({0}, {1}, {2})]'.format(self.length, self.gender, self.age)
+
+#problem 5
+class Point:
+	def __init__(self, coordOne: float, coordTwo: float) -> None:
+		coordOne = self.coordOne
+		coordTwo = self.coordTwo
+
+class LineSegment:
+	def __init__(self, point1: Point, point2: Point) -> None:
+		point1 = self.point1
+		point2 = self.point2
+	def slope(self) -> float:
+		rise = self.point2.coordTwo - self.point1.coordTwo
+		run = self.point2.coordOne - self.point1.coordOne
+		return rise/run
+	def length(self) -> float:
+		#oh boy, let's think this out. we need pythagorean theorum, yes?
+		aSquared = (self.point2.coordOne - self.point1.coordOne) ** 2
+		bSquared = (self.point2.coordOne - self.point1.coordOne) ** 2
+		#I hope I did those right!
+		cSquared = aSquared + bSquared
+		return math.sqrt(cSquared)
+
