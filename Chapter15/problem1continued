@@ -30,3 +30,20 @@ def doublePreceding(values: list[float]) -> None:
 >>> testList
 [0, 8, 6, 10, 12]
 #at long last it worked!
+#for languages that don't support negative indecies, the back-to-front iteration would need to be translated to appropriate index numbers
+
+#alternate solution proposed by Gavin to use front-to-back iteration:
+>>> from typing import List
+>>> def double_preceding(values: List[float]) -> None:
+...         if values != []:
+...                 temp = values[0]
+...                 values[0] = 0
+...                 for i in range(1, len(values)):
+...                         placeholder = values[i]
+...                         values[i] = 2*temp
+...                         temp = placeholder
+...
+>>> L = [4, 5, 6]
+>>> double_preceding(L)
+>>> print(L)
+[0, 8, 10]
