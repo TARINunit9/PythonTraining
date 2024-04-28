@@ -101,3 +101,47 @@ None
 [[1.0, 1.0], [3.0, 2.0]]
 >>> [[1.0, 1.0], [3.0, 1.0]], [1.0, 3.0]
 Error: please specify two full line segments
+
+#problem 3
+import unittest
+class TestAllPrefixes(unittest.TestCase):
+  def testOne(self):
+    expected = {"l", "le", "lea", "lead"}
+    actual = all_prefixes("lead")
+    assertEquals(expected, actual, "Works on the word lead")
+  def testTwo(self):
+    expected = {"g","go","got","got o","got on","got one"}
+    actual = all_prefixes("got one")
+    assertEquals(expected, actual, "Works on the words got one")
+  def testThree(self):
+    expected = {"1","12","123","1234"}
+    actual = all_prefixes("1234")
+    assertEquals(expected, actual, "Works on the numbers 1234")
+  def testTwo(self):
+    expected = {"G","Go","Go B","Go Be","Go Bea","Go Bear","Go Bears", "Go Bears!"}
+    actual = all_prefixes("Go Bears!")
+    assertEquals(expected, actual, "Works on the words Go Bears!")
+
+#problem 4
+import unittest
+class TestIsSorted(unittest.TestCase):
+  def testOne(self):
+    expected = True
+    actual = is_sorted([1, 2, 3, 4])
+    assertEquals(expected, actual, "Works on basic list")
+  def testTwo(self):
+    expected = True
+    actual = is_sorted([1, 2, 2, 4])
+    assertEquals(expected, actual, "Works on list with duplicates")
+  def testThree(self):
+    expected = False
+    actual = is_sorted([1, 3, 2, 4])
+    assertEquals(expected, actual, "Works on detecting failure")
+  def testFour(self):
+    expected = True
+    actual = is_sorted([1])
+    assertEquals(expected, actual, "Works on list with one element")
+  def testFive(self):
+    expected = False
+    actual = is_sorted([1, -2, 3, -4])
+    assertEquals(expected, actual, "Works on list with negative values")
