@@ -1,5 +1,28 @@
 #I'm going to do some fresh tests on problem 1
 
+#here's the unittest I was supposed to create:
+from typing import List
+def double_preceding(values: list[float]):
+  if values != []:
+    temp = values[0]
+    for i in range(1, len(values)):
+      values[i] = 2 * temp
+      temp = values[i]
+import unittest
+class TestDoublePreceding(unittest.TestCase):
+  def testCase1(self):
+    expected = [0, 2, 4, 6]
+    self.assertEqual(expected, double_preceding([1, 2, 3, 4]), "Passed test 1")
+  def testCase2(self):
+    expected = [0, 0, 8, 4]
+    self.assertEqual(expected, double_preceding([0, 4, 2, 3]), "Passed test 2")
+  def testCase3(self):
+    expected = [0, 8, 6, 4]
+    self.assertEqual(expected, double_preceding([4, 3, 2, 1]), "Passed test 3")
+
+
+#now to try and fix the function
+
 def doublePreceding(values: list[float]) -> None:
   targetLength = (len(values) * -1)
   for i in range(-1, targetLength):
