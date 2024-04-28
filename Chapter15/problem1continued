@@ -1,0 +1,72 @@
+#I'm going to do some fresh tests on problem 1
+
+#here's the unittest I was supposed to create:
+from typing import List
+def double_preceding(values: list[float]):
+  if values != []:
+    temp = values[0]
+    for i in range(1, len(values)):
+      values[i] = 2 * temp
+      temp = values[i]
+import unittest
+class TestDoublePreceding(unittest.TestCase):
+  def testCase1(self):
+    expected = [0, 2, 4, 6]
+    self.assertEqual(expected, double_preceding([1, 2, 3, 4]), "Passed test 1")
+  def testCase2(self):
+    expected = [0, 0, 8, 4]
+    self.assertEqual(expected, double_preceding([0, 4, 2, 3]), "Passed test 2")
+  def testCase3(self):
+    expected = [0, 8, 6, 4]
+    self.assertEqual(expected, double_preceding([4, 3, 2, 1]), "Passed test 3")
+
+
+#now to try and fix the function
+
+def doublePreceding(values: list[float]) -> None:
+  targetLength = (len(values) * -1)
+  for i in range(-1, targetLength):
+  	values[i] = (values[i-1] * 2)
+  values[0] = 0
+
+#and the implementation:
+>>> def doublePrecedingTest(values: list[float]) -> None:
+...   targetLength = (len(values) * -1)
+...   for i in range(-1, targetLength, -1):
+...   	print(values[i-1] * 2)
+... 
+...   	
+>>> testList = [4, 3, 5, 6, 2]
+>>> doublePrecedingTest(testList)
+12
+10
+6
+8
+>>> def doublePreceding(values: list[float]) -> None:
+...   targetLength = (len(values) * -1)
+...   for i in range(-1, targetLength, -1):
+...   	values[i] = (values[i-1] * 2)
+...   values[0] = 0
+... 
+...   
+>>> doublePreceding(testList)
+>>> testList
+[0, 8, 6, 10, 12]
+#at long last it worked!
+#for languages that don't support negative indecies, the back-to-front iteration would need to be translated to appropriate index numbers
+
+#alternate solution proposed by Gavin to use front-to-back iteration:
+>>> from typing import List
+>>> def double_preceding(values: List[float]) -> None:
+...         if values != []:
+...                 temp = values[0]
+...                 values[0] = 0
+...                 for i in range(1, len(values)):
+...                         placeholder = values[i]
+...                         values[i] = 2*temp
+...                         temp = placeholder
+...
+>>> L = [4, 5, 6]
+>>> double_preceding(L)
+>>> print(L)
+[0, 8, 10]

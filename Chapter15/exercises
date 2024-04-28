@@ -1,0 +1,231 @@
+#problem 1
+#first we need to FIND the bug
+#but on a guess, I'm thinking the original code is doubling the NEW values instead iof the ORIGINAL values'
+
+Python 3.12.2 (tags/v3.12.2:6abddd9, Feb  6 2024, 21:26:36) [MSC v.1937 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+>>> from typing import List
+>>> def double_preceding(values: list[float]):
+...   if values != []:
+...     temp = values[0]
+...     for i in range(1, len(values)):
+...       values[i] = 2 * temp
+...       temp = values[i]
+... 
+...   
+>>> testListOne = [1, 4, 3]
+>>> testListTwo = [1, 3, 4, 2]
+>>> double_preceding(testListOne)
+>>> testListOne
+[1, 2, 4]
+>>> double_preceding(testListTwo)
+>>> testListTwo
+[1, 2, 4, 8]
+
+#as I suspected, it's not reading the original list after the first value'
+#always create a buffer list
+
+def doublePreceding(values: list[float]):
+  if values != []:
+    temp = []
+    temp.append(values[0])
+    for i in range(1, len(values)):
+      temp.append(2 * values[i-1])
+    values = temp
+
+#let's try it out!'
+#ironically I ran into a bug of my own regarding memory asignment
+#I created this test function
+def doublePrecedingTest(values: list[float]):
+  if values != []:
+    temp = []
+    temp.append(values[0])
+    for i in range(1, len(values)):
+      temp.append(2 * values[i-1])
+    print(temp)
+    print(values)
+    values = temp
+    print(values)
+#but it was getting different results than the non-test function
+>>> def doublePreceding(values: list[float]):
+...   if values != []:
+...     temp = []
+...     temp.append(values[0])
+...     for i in range(1, len(values)):
+...       temp.append(2 * values[i-1])
+...     values = temp
+... 
+...     
+>>> testListThree = [4, 3, 2, 1]
+>>> doublePreceding(testListThree)
+>>> testListThree
+[4, 3, 2, 1]
+>>> def doublePrecedingTest(values: list[float]):
+...   if values != []:
+...     temp = []
+...     temp.append(values[0])
+...     for i in range(1, len(values)):
+...       temp.append(2 * values[i-1])
+...     print(temp)
+...     print(values)
+...     values = temp
+...     print(values)
+... 
+>>> testListThree = [4, 3, 2, 1]
+>>> doublePrecedingTest(testListThree)
+[4, 8, 6, 4]
+[4, 3, 2, 1]
+[4, 8, 6, 4]
+
+#I'm going to come back to this later. I've got the right logic but it only works when it feels like it
+
+#update: i've put problem 1 in its own file called problem1continued
+
+#problem 2
+#the six cases I would want to test are:
+#1, lines don't intersect'
+#2, lines do intersect, in the middle of the lines
+#3, lines do intersect, at a shared vertex
+#4, lines are coincident and the same size
+#5, lines are coincident and not the same size
+#6, an error case where not enough arguments exist
+#I want a demonstration of three basic cases (1, 2, 5) some corner-cases (3, 4) and a demonstration of the errors (6)
+#and the hypothetical docstring:
+>>> [[1.0, 1.0], [3.0, 1.0]], [[1.0, 3.0],[3.0, 2.0]]
+None
+>>> [[1.0, 1.0], [3.0, 3.0]], [[1.0, 3.0],[3.0, 1.0]]
+[2.0, 2.0]
+>>> [[1.0, 1.0], [2.0, 3.0]], [[2.0, 3.0],[3.0, 1.0]]
+[2.0, 3.0]
+>>> [[1.0, 1.0], [3.0, 2.0]], [[1.0, 1.0],[3.0, 2.0]]
+[[1.0, 1.0], [3.0, 2.0]]
+>>> [[1.0, 1.0], [3.0, 2.0]], [[1.0, 1.0],[5.0, 3.0]]
+[[1.0, 1.0], [3.0, 2.0]]
+>>> [[1.0, 1.0], [3.0, 1.0]], [1.0, 3.0]
+Error: please specify two full line segments
+
+#problem 3
+import unittest
+class TestAllPrefixes(unittest.TestCase):
+  def testOne(self):
+    expected = {"l", "le", "lea", "lead"}
+    actual = all_prefixes("lead")
+    assertEquals(expected, actual, "Works on the word lead")
+  def testTwo(self):
+    expected = {"g","go","got","got o","got on","got one"}
+    actual = all_prefixes("got one")
+    assertEquals(expected, actual, "Works on the words got one")
+  def testThree(self):
+    expected = {"1","12","123","1234"}
+    actual = all_prefixes("1234")
+    assertEquals(expected, actual, "Works on the numbers 1234")
+  def testTwo(self):
+    expected = {"G","Go","Go B","Go Be","Go Bea","Go Bear","Go Bears", "Go Bears!"}
+    actual = all_prefixes("Go Bears!")
+    assertEquals(expected, actual, "Works on the words Go Bears!")
+
+#problem 4
+import unittest
+class TestIsSorted(unittest.TestCase):
+  def testOne(self):
+    expected = True
+    actual = is_sorted([1, 2, 3, 4])
+    assertEquals(expected, actual, "Works on basic list")
+  def testTwo(self):
+    expected = True
+    actual = is_sorted([1, 2, 2, 4])
+    assertEquals(expected, actual, "Works on list with duplicates")
+  def testThree(self):
+    expected = False
+    actual = is_sorted([1, 3, 2, 4])
+    assertEquals(expected, actual, "Works on detecting failure")
+  def testFour(self):
+    expected = True
+    actual = is_sorted([1])
+    assertEquals(expected, actual, "Works on list with one element")
+  def testFive(self):
+    expected = False
+    actual = is_sorted([1, -2, 3, -4])
+    assertEquals(expected, actual, "Works on list with negative values")
+
+#problem 5
+#I suspect initializing min and max to None is going to cause problems
+#but to make sure, let's let Python itself find the bug
+Python 3.12.2 (tags/v3.12.2:6abddd9, Feb  6 2024, 21:26:36) [MSC v.1937 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+>>> def findMinMax(values: list):
+...     min = None
+...     max = None
+...     for value in values:
+...         if value > max:
+...             max = value
+...         if value < min:
+...             min = value
+...     print(min)
+...     print(max)
+... 
+...     
+>>> testList = [1, 2, 3, 4]
+>>> findMinMax(testList)
+Traceback (most recent call last):
+  File "<pyshell#12>", line 1, in <module>
+    findMinMax(testList)
+  File "<pyshell#10>", line 5, in findMinMax
+    if value > max:
+TypeError: '>' not supported between instances of 'int' and 'NoneType'
+
+#yep, initilizing min and max to None is our issue here
+#to answer the textbook's question "What does it actually do?" It does nothing but crash
+#let's make one little change, initialize min and max properly:
+>>> def findMinMax(values: list):
+...     min = values[0]
+...     max = values[0]
+...     for value in values:
+...         if value > max:
+...             max = value
+...         if value < min:
+...             min = value
+...     print(min)
+...     print(max)
+... 
+...     
+>>> testList = [1, 2, 3, 4]
+>>> findMinMax(testList)
+1
+4
+
+#problem 6
+#let's make our unittest first
+
+import unittest
+class TestSurveyAverage(unittest.TestCase):
+  def testOne(self):
+    expected = 25
+    actual = average([30, 20])
+    assertEquals(expected, actual, "Works for no None values")
+  def testTwo(self):
+    expected = 30
+    actual = is_sorted([40, None, 20])
+    assertEquals(expected, actual, "Works for one None value")
+  def testThree(self):
+    expected = 50
+    actual = is_sorted([None, 60, 40, None])
+    assertEquals(expected, actual, "Works on leading and trailing None values")
+
+#the change to make is simple: move the line "count += 1" into the if statement
+
+>>> def sillyAverage(values: list[float]) -> float:
+...     count = 0
+...     total = 0
+...     for value in values:
+...         if value is not None:
+...             count += 1
+...             total += value
+...     return total / count
+... 
+>>> testWithNums = [1, 2, 4, 6]
+>>> sillyAverage(testWithNums)
+3.25
+>>> testWithNones = [1, None, 3]
+>>> sillyAverage(testWithNones)
+2.0
