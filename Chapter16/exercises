@@ -28,9 +28,13 @@ lambda x: y
 #drafting problem 4, not finished yet
 import tkinter
 
-def countStuff(someString, someInput):
+def countStuff(dnaResults, userInput):
 	#code goes here
-	#"My name is {0}, I'm {1}".format("John",36)
+	aCount = userInput.count("A")
+	cCount = userInput.count("C")
+	gCount = userInput.count("G")
+	tCount = userInput.count("T")
+	dnaResults = "Num As: {0} Num Cs: {1} Num Gs: {2} NumTs: {3}".format(aCount, cCount, gCount, tCount)
 
 window = tkinter.TK()
 frame = tkinter.Frame(window)frame.pack()
