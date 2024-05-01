@@ -1,0 +1,27 @@
+#first draft so far
+
+#problem 1
+import tkinter
+
+window = tkinter.TK()
+frame = tkinter.Frame(window)frame.pack()
+button = tkinter.Text(frame, text='Goodbye', command=parent.destroy)
+button.pack()
+window.mainLoop()
+
+#problem 2
+import tkinter
+
+def counterThing(someInt):
+	someInt += 1
+
+counterInt = 0
+window = tkinter.TK()
+frame = tkinter.Frame(window)frame.pack()
+button = tkinter.Text(frame, text=counterInt, command=lambda: counterThing(counterInt))
+button.pack()
+window.mainLoop()
+
+#problem 3
+lambda x: y
+
