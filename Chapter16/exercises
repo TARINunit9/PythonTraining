@@ -25,3 +25,21 @@ window.mainLoop()
 #problem 3
 lambda x: y
 
+#drafting problem 4, not finished yet
+import tkinter
+
+def countStuff(someString, someInput):
+	#code goes here
+	#"My name is {0}, I'm {1}".format("John",36)
+
+window = tkinter.TK()
+frame = tkinter.Frame(window)frame.pack()
+dnaResults = tkinter.StringVar()
+userInput = tkinter.StringVar()
+entry = tkinter.Entry(frame, textvariable=userInput)
+button = tkinter.Text(frame, text='Count', command=lambda: countStuff(dnaResults, userInput))
+button.pack()
+label = tkinter.Label(frame, textvariable=dnaResults)
+label.pack()
+
+window.mainLoop()
