@@ -1,13 +1,35 @@
 #first draft so far
 
 #problem 1
+#without object-oriented. this creates the GUI but has no way to connect to the destroy() function
 import tkinter
 
-window = tkinter.TK()
-frame = tkinter.Frame(window)frame.pack()
-button = tkinter.Text(frame, text='Goodbye', command=parent.destroy)
+def closeFunction():
+  destroy()
+
+window = tkinter.Tk()
+frame = tkinter.Frame(window)
+frame.pack()
+button = tkinter.Button(frame, text='Goodbye', command=closeFunction)
 button.pack()
-window.mainLoop()
+window.mainloop()
+
+#so let's try it with object-oriented
+#I didn't want to just copy page 338, but it seems to be the only way to organize the functions i need
+import tkinter
+class SelfDeleter:
+	def __init__(self, parent):
+		self.parent = parent
+		self.frame = tkinter.Frame(parent)
+		self.frame.pack()
+		self.button = tkinter.Button(frame, text='Goodbye', command=self.closeFunction)
+		self.button.pack()
+	def closeFunction(self):
+		self.parent.destroy()
+if __name__ == '__main__':
+	window = tkinter.Tk()
+	myapp = SelfDeleter(window)
+	window.mainloop()
 
 #problem 2
 import tkinter
@@ -15,17 +37,39 @@ import tkinter
 def counterThing(someInt):
 	someInt += 1
 
-counterInt = 0
-window = tkinter.TK()
-frame = tkinter.Frame(window)frame.pack()
-button = tkinter.Text(frame, text=counterInt, command=lambda: counterThing(counterInt))
+window = tkinter.Tk()
+counterInt = tkinter.IntVar()
+counterInt.set(0)
+frame = tkinter.Frame(window)
+frame.pack()
+button = tkinter.Button(frame, text=counterInt, command=lambda: counterThing(counterInt))
 button.pack()
 window.mainLoop()
+
+#this also didn't work. I don't know why the manual made practice problems with global variables if functions can't even accept them
+#so here's the object oriented framework
+import tkinter
+class ButtonAdder:
+	def __init__(self, parent):
+		self.parent = parent
+		self.frame = tkinter.Frame(parent)
+		self.frame.pack()
+		counterInt = tkinter.IntVar()
+		counterInt.set(0)
+		self.button = tkinter.Button(frame, text=counterInt, command=self.counterThing(counterInt))
+		self.button.pack()
+	def counterThing(counterInt: IntVar):
+		counterInt.set(counterInt.get() + 1)
+if __name__ == '__main__':
+	window = tkinter.Tk()
+	myapp = ButtonAdder(window)
+	window.mainloop()
 
 #problem 3
 lambda x: y
 
-#drafting problem 4, not finished yet
+#problem 4
+#first draft:
 import tkinter
 
 def countStuff(dnaResults, userInput):
@@ -36,7 +80,7 @@ def countStuff(dnaResults, userInput):
 	tCount = userInput.count("T")
 	dnaResults = "Num As: {0} Num Cs: {1} Num Gs: {2} NumTs: {3}".format(aCount, cCount, gCount, tCount)
 
-window = tkinter.TK()
+window = tkinter.Tk()
 frame = tkinter.Frame(window)frame.pack()
 dnaResults = tkinter.StringVar()
 userInput = tkinter.StringVar()
@@ -47,3 +91,56 @@ label = tkinter.Label(frame, textvariable=dnaResults)
 label.pack()
 
 window.mainLoop()
+
+#I won't even attempt to compile that, but it helped me work through the program logic
+#now the object-oriented version:
+
+import tkinter
+class GenericName:
+	def __init__(self, parent):
+		self.parent = parent
+		self.frame = tkinter.Frame(parent)
+		self.frame.pack()
+		self.dnaResults = tkinter.StringVar()
+		self.userInput = tkinter.StringVar()
+		self.entry = tkinter.Entry(frame, textvariable=userInput)
+		self.button = tkinter.Text(frame, text='Count', command=lambda: countStuff(dnaResults, userInput))
+		self.button.pack()
+		self.label = tkinter.Label(frame, textvariable=dnaResults)
+		self.label.pack()
+
+	def countStuff(dnaResults, userInput):
+		aCount = userInput.count("A")
+		cCount = userInput.count("C")
+		gCount = userInput.count("G")
+		tCount = userInput.count("T")
+		dnaResults = "Num As: {0} Num Cs: {1} Num Gs: {2} NumTs: {3}".format(aCount, cCount, gCount, tCount)
+if __name__ == '__main__':
+	window = tkinter.Tk()
+	myapp = GenericName(window)
+	window.mainloop()
+
+#problem 5
+import tkinter
+class GenericName:
+	def __init__(self, parent):
+		self.parent = parent
+		self.frame = tkinter.Frame(parent)
+		self.frame.pack()
+		self.tempResults = tkinter.IntVar()
+		self.tempResults.set(0)
+		self.userInput = tkinter.IntVar()
+		self.labelOne = tkinter.Label(self.frame, text='Temperature In Fahrenheit")
+		self.labelOne.pack()
+		self.entry = tkinter.Entry(frame, textvariable=userInput)
+		self.button = tkinter.Text(frame, text='Convert', command=lambda: calcTemp(tempResults, userInput))
+		self.button.pack()
+		self.labelTwo = = tkinter.Label(self.frame, textvariable=tempResults)
+		self.labelTwo.pack()
+
+	def calcTemp(dnaResults, userInput):
+		#code goes here
+if __name__ == '__main__':
+	window = tkinter.Tk()
+	myapp = GenericName(window)
+	window.mainloop()
