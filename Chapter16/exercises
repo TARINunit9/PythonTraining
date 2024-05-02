@@ -104,7 +104,7 @@ class GenericName:
 		self.dnaResults = tkinter.StringVar()
 		self.userInput = tkinter.StringVar()
 		self.entry = tkinter.Entry(frame, textvariable=userInput)
-		self.button = tkinter.Text(frame, text='Count', command=lambda: countStuff(dnaResults, userInput))
+		self.button = tkinter.Text(frame, text='Count', command=self.countStuff(dnaResults, userInput))
 		self.button.pack()
 		self.label = tkinter.Label(frame, textvariable=dnaResults)
 		self.label.pack()
@@ -133,14 +133,16 @@ class GenericName:
 		self.labelOne = tkinter.Label(self.frame, text='Temperature In Fahrenheit")
 		self.labelOne.pack()
 		self.entry = tkinter.Entry(frame, textvariable=userInput)
-		self.button = tkinter.Text(frame, text='Convert', command=lambda: calcTemp(tempResults, userInput))
+		self.button = tkinter.Text(frame, text='Convert', command=self.calcTemp(tempResults, userInput))
 		self.button.pack()
 		self.labelTwo = = tkinter.Label(self.frame, textvariable=tempResults)
 		self.labelTwo.pack()
 
-	def calcTemp(dnaResults, userInput):
-		#code goes here
+	def calcTemp(tempResults, userInput):
+		tempResults.set((userInput.get() - 32) * (5/9))
 if __name__ == '__main__':
 	window = tkinter.Tk()
 	myapp = GenericName(window)
 	window.mainloop()
+
+#problem 6
