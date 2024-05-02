@@ -1,21 +1,20 @@
 #first draft so far
 
 #problem 1
-#without object-oriented. this creates the GUI but has no way to connect to the destroy() function
-import tkinter
+#this took a few drafts but I finally got this to work without object-oriented
+>>> import tkinter
+>>> def quitFunction(root):
+...     root.destroy()
+... 
+...     
+>>> window = tkinter.Tk()
+>>> frame = tkinter.Frame(window)
+>>> frame.pack()
+>>> button = tkinter.Button(frame, text='Goodbye', command=lambda: quitFunction(window))
+>>> button.pack()
+>>> window.mainloop()
 
-def closeFunction():
-  destroy()
-
-window = tkinter.Tk()
-frame = tkinter.Frame(window)
-frame.pack()
-button = tkinter.Button(frame, text='Goodbye', command=closeFunction)
-button.pack()
-window.mainloop()
-
-#so let's try it with object-oriented
-#I didn't want to just copy page 338, but it seems to be the only way to organize the functions i need
+#and here's a draft with object-oriented structure
 import tkinter
 class SelfDeleter:
 	def __init__(self, parent):
@@ -32,6 +31,7 @@ if __name__ == '__main__':
 	window.mainloop()
 
 #problem 2
+#untested drafts, with and without object-oriented structure
 import tkinter
 
 def counterThing(someInt):
@@ -46,8 +46,7 @@ button = tkinter.Button(frame, text=counterInt, command=lambda: counterThing(cou
 button.pack()
 window.mainLoop()
 
-#this also didn't work. I don't know why the manual made practice problems with global variables if functions can't even accept them
-#so here's the object oriented framework
+#object oriented framework
 import tkinter
 class ButtonAdder:
 	def __init__(self, parent):
