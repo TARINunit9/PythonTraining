@@ -145,3 +145,35 @@ if __name__ == '__main__':
 	window.mainloop()
 
 #problem 6
+import tkinter
+import tkinter.filedialogue as dialogue
+
+class TextEditor:
+	def __init__(self, parent):
+		self.parent = parent
+		self.frame = tkinter.Frame(parent)
+		self.frame.pack()
+		self.text = tkinter.Text(window)
+		self.text.pack()
+		self.menubar = tkinter.Menu(window)
+		self.filemenu = tkinter.Menu(menubar)
+		self.filemenu.add_command(label='Save', command=lambda: save(window, text))
+		self.filemenu.add_command(label='Quit', command=lambda: quit(window))
+		self.menubar.add_cascade(label='File', menu=filemenu)
+		self.window.config(menu=menubar)
+	def save(root, text):
+		data = text.get('0.0', tkinter.END)
+		filename = dialogue.asksaveasfilename(
+			parent=root,
+			filetypes=[('Text', '*.txt')],
+			title='Save as...')
+		writer=open(filename, 'w')
+		writer.write(data)
+		writer.close()
+	def quit(root):
+		root.destroy()
+
+if __name__ == '__main__':
+	window = tkinter.Tk()
+	myapp = TextEditor(window)
+	window.mainloop()
