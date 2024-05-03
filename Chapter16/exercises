@@ -1,0 +1,179 @@
+#first draft so far
+
+#problem 1
+#this took a few drafts but I finally got this to work without object-oriented
+>>> import tkinter
+>>> def quitFunction(root):
+...     root.destroy()
+... 
+...     
+>>> window = tkinter.Tk()
+>>> frame = tkinter.Frame(window)
+>>> frame.pack()
+>>> button = tkinter.Button(frame, text='Goodbye', command=lambda: quitFunction(window))
+>>> button.pack()
+>>> window.mainloop()
+
+#and here's a draft with object-oriented structure
+import tkinter
+class SelfDeleter:
+	def __init__(self, parent):
+		self.parent = parent
+		self.frame = tkinter.Frame(parent)
+		self.frame.pack()
+		self.button = tkinter.Button(frame, text='Goodbye', command=self.closeFunction)
+		self.button.pack()
+	def closeFunction(self):
+		self.parent.destroy()
+if __name__ == '__main__':
+	window = tkinter.Tk()
+	myapp = SelfDeleter(window)
+	window.mainloop()
+
+#problem 2
+#untested drafts, with and without object-oriented structure
+import tkinter
+
+def counterThing(someInt):
+	someInt += 1
+
+window = tkinter.Tk()
+counterInt = tkinter.IntVar()
+counterInt.set(0)
+frame = tkinter.Frame(window)
+frame.pack()
+button = tkinter.Button(frame, text=counterInt, command=lambda: counterThing(counterInt))
+button.pack()
+window.mainLoop()
+
+#object oriented framework
+import tkinter
+class ButtonAdder:
+	def __init__(self, parent):
+		self.parent = parent
+		self.frame = tkinter.Frame(parent)
+		self.frame.pack()
+		counterInt = tkinter.IntVar()
+		counterInt.set(0)
+		self.button = tkinter.Button(frame, text=counterInt, command=self.counterThing(counterInt))
+		self.button.pack()
+	def counterThing(counterInt: IntVar):
+		counterInt.set(counterInt.get() + 1)
+if __name__ == '__main__':
+	window = tkinter.Tk()
+	myapp = ButtonAdder(window)
+	window.mainloop()
+
+#problem 3
+lambda x: y
+
+#problem 4
+#first draft:
+import tkinter
+
+def countStuff(dnaResults, userInput):
+	#code goes here
+	aCount = userInput.count("A")
+	cCount = userInput.count("C")
+	gCount = userInput.count("G")
+	tCount = userInput.count("T")
+	dnaResults = "Num As: {0} Num Cs: {1} Num Gs: {2} NumTs: {3}".format(aCount, cCount, gCount, tCount)
+
+window = tkinter.Tk()
+frame = tkinter.Frame(window)frame.pack()
+dnaResults = tkinter.StringVar()
+userInput = tkinter.StringVar()
+entry = tkinter.Entry(frame, textvariable=userInput)
+button = tkinter.Text(frame, text='Count', command=lambda: countStuff(dnaResults, userInput))
+button.pack()
+label = tkinter.Label(frame, textvariable=dnaResults)
+label.pack()
+
+window.mainLoop()
+
+#I won't even attempt to compile that, but it helped me work through the program logic
+#now the object-oriented version:
+
+import tkinter
+class GenericName:
+	def __init__(self, parent):
+		self.parent = parent
+		self.frame = tkinter.Frame(parent)
+		self.frame.pack()
+		self.dnaResults = tkinter.StringVar()
+		self.userInput = tkinter.StringVar()
+		self.entry = tkinter.Entry(frame, textvariable=userInput)
+		self.button = tkinter.Text(frame, text='Count', command=self.countStuff(dnaResults, userInput))
+		self.button.pack()
+		self.label = tkinter.Label(frame, textvariable=dnaResults)
+		self.label.pack()
+
+	def countStuff(dnaResults, userInput):
+		aCount = userInput.count("A")
+		cCount = userInput.count("C")
+		gCount = userInput.count("G")
+		tCount = userInput.count("T")
+		dnaResults = "Num As: {0} Num Cs: {1} Num Gs: {2} NumTs: {3}".format(aCount, cCount, gCount, tCount)
+if __name__ == '__main__':
+	window = tkinter.Tk()
+	myapp = GenericName(window)
+	window.mainloop()
+
+#problem 5
+import tkinter
+class GenericName:
+	def __init__(self, parent):
+		self.parent = parent
+		self.frame = tkinter.Frame(parent)
+		self.frame.pack()
+		self.tempResults = tkinter.IntVar()
+		self.tempResults.set(0)
+		self.userInput = tkinter.IntVar()
+		self.labelOne = tkinter.Label(self.frame, text='Temperature In Fahrenheit")
+		self.labelOne.pack()
+		self.entry = tkinter.Entry(frame, textvariable=userInput)
+		self.button = tkinter.Text(frame, text='Convert', command=self.calcTemp(tempResults, userInput))
+		self.button.pack()
+		self.labelTwo = = tkinter.Label(self.frame, textvariable=tempResults)
+		self.labelTwo.pack()
+
+	def calcTemp(tempResults, userInput):
+		tempResults.set((userInput.get() - 32) * (5/9))
+if __name__ == '__main__':
+	window = tkinter.Tk()
+	myapp = GenericName(window)
+	window.mainloop()
+
+#problem 6
+import tkinter
+import tkinter.filedialogue as dialogue
+
+class TextEditor:
+	def __init__(self, parent):
+		self.parent = parent
+		self.frame = tkinter.Frame(parent)
+		self.frame.pack()
+		self.text = tkinter.Text(window)
+		self.text.pack()
+		self.menubar = tkinter.Menu(window)
+		self.filemenu = tkinter.Menu(menubar)
+		self.filemenu.add_command(label='Save', command=lambda: save(window, text))
+		self.filemenu.add_command(label='Quit', command=lambda: quit(window))
+		self.menubar.add_cascade(label='File', menu=filemenu)
+		self.window.config(menu=menubar)
+	def save(root, text):
+		data = text.get('0.0', tkinter.END)
+		filename = dialogue.asksaveasfilename(
+			parent=root,
+			filetypes=[('Text', '*.txt')],
+			title='Save as...')
+		writer=open(filename, 'w')
+		writer.write(data)
+		writer.close()
+	def quit(root):
+		root.destroy()
+
+if __name__ == '__main__':
+	window = tkinter.Tk()
+	myapp = TextEditor(window)
+	window.mainloop()
