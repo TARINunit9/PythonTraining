@@ -4,3 +4,18 @@ con = sqlite3.connect('census.db')
 cur = con.cursor()
 cur.execute('CREATE TABLE Density(Territory TEXT, Population INTEGER, LandArea REAL)')
 cur.execute('INSERT INTO Density VALUES("Newfoundland and Labrador", 512930, 370501.69)')
+#a little tedious but that's data entry for you
+cur.execute('INSERT INTO Density VALUES("Prince Edward Island", 512930, 5684.39)')
+cur.execute('INSERT INTO Density VALUES("Nova Scotia", 135294, 52917.43)')
+cur.execute('INSERT INTO Density VALUES("New Brunswick", 908007, 71355.67)')
+cur.execute('INSERT INTO Density VALUES("Quebec", 7327479, 1357743.08)')
+cur.execute('INSERT INTO Density VALUES("Ontario", 11410046, 907655.59)')
+cur.execute('INSERT INTO Density VALUES("Manitoba", 1119583, 551937.87)')
+cur.execute('INSERT INTO Density VALUES("Saskatchewan", 978933, 586561.35)')
+cur.execute('INSERT INTO Density VALUES("Alberta", 2974807, 639987.12)')
+cur.execute('INSERT INTO Density VALUES("British Columbia", 3907738, 926492.48)')
+cur.execute('INSERT INTO Density VALUES("Yukon Territory", 28674, 474706.97)')
+cur.execute('INSERT INTO Density VALUES("Northwest Territories", 37360, 1141108.37)')
+cur.execute('INSERT INTO Density VALUES("Nunavut", 26745, 1925460.18)')
+
+#now to retrieve the contents
