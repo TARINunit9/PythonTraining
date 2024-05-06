@@ -4,7 +4,6 @@ con = sqlite3.connect('census.db')
 cur = con.cursor()
 cur.execute('CREATE TABLE Density(Territory TEXT, Population INTEGER, LandArea REAL)')
 cur.execute('INSERT INTO Density VALUES("Newfoundland and Labrador", 512930, 370501.69)')
-#a little tedious but that's data entry for you
 cur.execute('INSERT INTO Density VALUES("Prince Edward Island", 512930, 5684.39)')
 cur.execute('INSERT INTO Density VALUES("Nova Scotia", 135294, 52917.43)')
 cur.execute('INSERT INTO Density VALUES("New Brunswick", 908007, 71355.67)')
@@ -17,5 +16,58 @@ cur.execute('INSERT INTO Density VALUES("British Columbia", 3907738, 926492.48)'
 cur.execute('INSERT INTO Density VALUES("Yukon Territory", 28674, 474706.97)')
 cur.execute('INSERT INTO Density VALUES("Northwest Territories", 37360, 1141108.37)')
 cur.execute('INSERT INTO Density VALUES("Nunavut", 26745, 1925460.18)')
+#a little tedious but that's data entry for you
+#and let's not forget
+con.commit()
 
 #now to retrieve the contents
+cur.fetchall()
+
+#retrieve only the populations
+cur.execute('SELECT Population FROM Density')
+cur.fetchall()
+
+#retrieve regions with populations below one million
+cur.execute('SELECT Territory FROM Density WHERE Population < 1000000')
+cur.fetchall()
+
+#retrieve regions with populations below one million or above five million
+cur.execute('SELECT Territory FROM Density WHERE Population < 1000000 OR Population > 5000000')
+cur.fetchall()
+
+#retrieve regions with populations between one million and five million
+cur.execute('SELECT Territory FROM Density WHERE 1000000 < Population < 5000000')
+cur.fetchall()
+
+#retrieve regions with area above two hundred thousand
+cur.execute('SELECT Territory FROM Density WHERE LandArea > 200000')
+cur.fetchall()
+
+#retrieve regions with population density 
+cur.execute('SELECT Territory, (Population/LandArea) FROM Density')
+cur.fetchall()
+
+con.close
+
+#problem 2
+con = sqlite3.connect('census.db')
+cur = con.cursor()
+cur.execute('CREATE TABLE Capitals(Territory TEXT, Capital TEXT, Population INT)')
+#time to build another table
+cur.execute('INSERT INTO Capitals VALUES("Newfoundland and Labrador", "St. John's", 172918)')
+cur.execute('INSERT INTO Capitals VALUES("Prince Edward Island", "Charlottetown", 58358)')
+cur.execute('INSERT INTO Capitals VALUES("Nova Scotia", "Halifax", 359183)')
+cur.execute('INSERT INTO Capitals VALUES("New Brunswick", "Fredericton", 81346)')
+cur.execute('INSERT INTO Capitals VALUES("Quebec", "Quebec City", 682757)')
+cur.execute('INSERT INTO Capitals VALUES("Ontario", "",)')
+cur.execute('INSERT INTO Capitals VALUES("Manitoba", "",)')
+cur.execute('INSERT INTO Capitals VALUES("Saskatchewan", "",)')
+cur.execute('INSERT INTO Capitals VALUES("Alberta", "")')
+cur.execute('INSERT INTO Capitals VALUES("British Columbia", "",)')
+cur.execute('INSERT INTO Capitals VALUES("Yukon Territory", "",)')
+cur.execute('INSERT INTO Capitals VALUES("Northwest Territories", "",)')
+cur.execute('INSERT INTO Capitals VALUES("Nunavut", "",)')
+
+#retrieve data
+cur.execute('SELECT * FROM Capitals')
+cur.fetchall()
