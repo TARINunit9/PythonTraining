@@ -59,15 +59,39 @@ cur.execute('INSERT INTO Capitals VALUES("Prince Edward Island", "Charlottetown"
 cur.execute('INSERT INTO Capitals VALUES("Nova Scotia", "Halifax", 359183)')
 cur.execute('INSERT INTO Capitals VALUES("New Brunswick", "Fredericton", 81346)')
 cur.execute('INSERT INTO Capitals VALUES("Quebec", "Quebec City", 682757)')
-cur.execute('INSERT INTO Capitals VALUES("Ontario", "",)')
-cur.execute('INSERT INTO Capitals VALUES("Manitoba", "",)')
-cur.execute('INSERT INTO Capitals VALUES("Saskatchewan", "",)')
-cur.execute('INSERT INTO Capitals VALUES("Alberta", "")')
-cur.execute('INSERT INTO Capitals VALUES("British Columbia", "",)')
-cur.execute('INSERT INTO Capitals VALUES("Yukon Territory", "",)')
-cur.execute('INSERT INTO Capitals VALUES("Northwest Territories", "",)')
-cur.execute('INSERT INTO Capitals VALUES("Nunavut", "",)')
+cur.execute('INSERT INTO Capitals VALUES("Ontario", "Toronto", 4682897)')
+cur.execute('INSERT INTO Capitals VALUES("Manitoba", "Winnipeg", 671274)')
+cur.execute('INSERT INTO Capitals VALUES("Saskatchewan", "Regina", 192800)')
+cur.execute('INSERT INTO Capitals VALUES("Alberta", "Edmonton", 937845)')
+cur.execute('INSERT INTO Capitals VALUES("British Columbia", "Victoria", 311902)')
+cur.execute('INSERT INTO Capitals VALUES("Yukon Territory", "Whitehorse", 21405)')
+cur.execute('INSERT INTO Capitals VALUES("Northwest Territories", "Yellowknife", 16541)')
+cur.execute('INSERT INTO Capitals VALUES("Nunavut", "Iquluit", 5236)')
 
 #retrieve data
 cur.execute('SELECT * FROM Capitals')
 cur.fetchall()
+
+#retrieve province and capital population in a tuple
+#time to join the table
+cur.execute('SELECT Density.Population, Capitals.Population
+#and the textbook says we get a list of tuples just by using fetchall
+cur.fetchall()
+
+#retrieve land area of regions with capital population above 100000
+
+#retrieve provinces where (density < 2 people/km2 and caiptal pop > 500000)
+
+#retrieve total land area of Canada
+cur.execute('SELECT SUM LandArea FROM Density')
+cur.fetchall()
+
+#retrieve average capital population
+cur.execute('SELECT AVG Population FROM Capitals')
+cur.fetchone()
+
+#retrieve lowest capital population
+
+#retrieve highest province population
+
+#problem 3
