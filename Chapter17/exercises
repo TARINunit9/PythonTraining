@@ -79,19 +79,30 @@ cur.execute('SELECT Density.Population, Capitals.Population
 cur.fetchall()
 
 #retrieve land area of regions with capital population above 100000
+cur.execute('SELECT Density.Territories WHERE Capitals.Population > 100000
 
 #retrieve provinces where (density < 2 people/km2 and caiptal pop > 500000)
+#I don't think I need to join tables for this?
+cur.execute('SELECT DISTINCT Territories
+  FROM Density
+  WHERE (Density.Population/Density.LandArea < 2 AND Capitals.population > 500000)')
+cur.fetchall()
 
 #retrieve total land area of Canada
 cur.execute('SELECT SUM LandArea FROM Density')
-cur.fetchall()
+cur.fetchone()
 
 #retrieve average capital population
 cur.execute('SELECT AVG Population FROM Capitals')
 cur.fetchone()
 
 #retrieve lowest capital population
+#hmm, what if...
+cur.execute('SELECT Population FROM Capitals ORDER BY Population ASC')
+cur.fetchone()
 
 #retrieve highest province population
+cur.execute('SELECT Population FROM Density ORDER BY Population DESC')
+cur.fetchone()
 
 #problem 3
