@@ -1,0 +1,6 @@
+#problem 1
+import sqlite3
+con = sqlite3.connect('census.db')
+cur = con.cursor()
+cur.execute('CREATE TABLE Density(Territory TEXT, Population INTEGER, LandArea REAL)')
+cur.execute('INSERT INTO Density VALUES("Newfoundland and Labrador", 512930, 370501.69)')
