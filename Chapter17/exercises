@@ -1,0 +1,138 @@
+#problem 1
+import sqlite3
+con = sqlite3.connect('census.db')
+cur = con.cursor()
+cur.execute('CREATE TABLE Density(Territory TEXT, Population INTEGER, LandArea REAL)')
+cur.execute('INSERT INTO Density VALUES("Newfoundland and Labrador", 512930, 370501.69)')
+cur.execute('INSERT INTO Density VALUES("Prince Edward Island", 512930, 5684.39)')
+cur.execute('INSERT INTO Density VALUES("Nova Scotia", 135294, 52917.43)')
+cur.execute('INSERT INTO Density VALUES("New Brunswick", 908007, 71355.67)')
+cur.execute('INSERT INTO Density VALUES("Quebec", 7327479, 1357743.08)')
+cur.execute('INSERT INTO Density VALUES("Ontario", 11410046, 907655.59)')
+cur.execute('INSERT INTO Density VALUES("Manitoba", 1119583, 551937.87)')
+cur.execute('INSERT INTO Density VALUES("Saskatchewan", 978933, 586561.35)')
+cur.execute('INSERT INTO Density VALUES("Alberta", 2974807, 639987.12)')
+cur.execute('INSERT INTO Density VALUES("British Columbia", 3907738, 926492.48)')
+cur.execute('INSERT INTO Density VALUES("Yukon Territory", 28674, 474706.97)')
+cur.execute('INSERT INTO Density VALUES("Northwest Territories", 37360, 1141108.37)')
+cur.execute('INSERT INTO Density VALUES("Nunavut", 26745, 1925460.18)')
+#a little tedious but that's data entry for you
+#and let's not forget
+con.commit()
+
+#now to retrieve the contents
+cur.fetchall()
+
+#retrieve only the populations
+cur.execute('SELECT Population FROM Density')
+cur.fetchall()
+
+#retrieve regions with populations below one million
+cur.execute('SELECT Territory FROM Density WHERE Population < 1000000')
+cur.fetchall()
+
+#retrieve regions with populations below one million or above five million
+cur.execute('SELECT Territory FROM Density WHERE Population < 1000000 OR Population > 5000000')
+cur.fetchall()
+
+#retrieve regions with populations between one million and five million
+cur.execute('SELECT Territory FROM Density WHERE 1000000 < Population < 5000000')
+cur.fetchall()
+
+#retrieve regions with area above two hundred thousand
+cur.execute('SELECT Territory FROM Density WHERE LandArea > 200000')
+cur.fetchall()
+
+#retrieve regions with population density 
+cur.execute('SELECT Territory, (Population/LandArea) FROM Density')
+cur.fetchall()
+
+con.close
+
+#problem 2
+con = sqlite3.connect('census.db')
+cur = con.cursor()
+cur.execute('CREATE TABLE Capitals(Territory TEXT, Capital TEXT, Population INT)')
+#time to build another table
+cur.execute('INSERT INTO Capitals VALUES("Newfoundland and Labrador", "St. John's", 172918)')
+cur.execute('INSERT INTO Capitals VALUES("Prince Edward Island", "Charlottetown", 58358)')
+cur.execute('INSERT INTO Capitals VALUES("Nova Scotia", "Halifax", 359183)')
+cur.execute('INSERT INTO Capitals VALUES("New Brunswick", "Fredericton", 81346)')
+cur.execute('INSERT INTO Capitals VALUES("Quebec", "Quebec City", 682757)')
+cur.execute('INSERT INTO Capitals VALUES("Ontario", "Toronto", 4682897)')
+cur.execute('INSERT INTO Capitals VALUES("Manitoba", "Winnipeg", 671274)')
+cur.execute('INSERT INTO Capitals VALUES("Saskatchewan", "Regina", 192800)')
+cur.execute('INSERT INTO Capitals VALUES("Alberta", "Edmonton", 937845)')
+cur.execute('INSERT INTO Capitals VALUES("British Columbia", "Victoria", 311902)')
+cur.execute('INSERT INTO Capitals VALUES("Yukon Territory", "Whitehorse", 21405)')
+cur.execute('INSERT INTO Capitals VALUES("Northwest Territories", "Yellowknife", 16541)')
+cur.execute('INSERT INTO Capitals VALUES("Nunavut", "Iquluit", 5236)')
+
+#retrieve data
+cur.execute('SELECT * FROM Capitals')
+cur.fetchall()
+
+#retrieve province and capital population in a tuple
+#time to join the table
+cur.execute('SELECT Density.Population, Capitals.Population
+#and the textbook says we get a list of tuples just by using fetchall
+cur.fetchall()
+
+#retrieve land area of regions with capital population above 100000
+cur.execute('SELECT Density.Territories WHERE Capitals.Population > 100000
+
+#retrieve provinces where (density < 2 people/km2 and caiptal pop > 500000)
+#I don't think I need to join tables for this?
+cur.execute('SELECT DISTINCT Territories
+  FROM Density
+  WHERE (Density.Population/Density.LandArea < 2 AND Capitals.population > 500000)')
+cur.fetchall()
+
+#retrieve total land area of Canada
+cur.execute('SELECT SUM LandArea FROM Density')
+cur.fetchone()
+
+#retrieve average capital population
+cur.execute('SELECT AVG Population FROM Capitals')
+cur.fetchone()
+
+#retrieve lowest capital population
+#hmm, what if...
+cur.execute('SELECT Population FROM Capitals ORDER BY Population ASC')
+cur.fetchone()
+
+#retrieve highest province population
+cur.execute('SELECT Population FROM Density ORDER BY Population DESC')
+cur.fetchone()
+
+#problem 3
+#What do I expect to happen? Error messages. Don't want to even imagine what kind
+#Maybe the first one will be some kind of just invalid type of request?
+#let's just run the experiment
+
+Python 3.12.2 (tags/v3.12.2:6abddd9, Feb  6 2024, 21:26:36) [MSC v.1937 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+>>> import sqlite3
+>>> con = sqlite3.connect('experiment.db')
+>>> cur = con.cursor()
+>>> cur.execute('CREATE TABLE Numbers(Val INTEGER)')
+<sqlite3.Cursor object at 0x0000018D5253FDC0>
+>>> cur.execute('INSERT INTO Numbers Values(1)')
+<sqlite3.Cursor object at 0x0000018D5253FDC0>
+>>> cur.execute('INSERT INTO Numbers Values(2)')
+<sqlite3.Cursor object at 0x0000018D5253FDC0>
+>>> cur.execute('SELECT * FROM Numbers WHERE 1/0')
+<sqlite3.Cursor object at 0x0000018D5253FDC0>
+>>> cur.fetchall()
+[]
+>>> cur.execute('SELECT * FROM Numbers WHERE 1/0 AND Val > 0')
+<sqlite3.Cursor object at 0x0000018D5253FDC0>
+>>> cur.fetchall()
+[]
+>>> cur.execute('SELECT * FROM Numbers WHERE Val > 0 AND 1/0')
+<sqlite3.Cursor object at 0x0000018D5253FDC0>
+>>> cur.fetchall()
+[]
+
+#well, turns out it just won't even bother. returned a bunch of empty sets. that's kinda neat
+#nice error handling, i think
