@@ -106,3 +106,33 @@ cur.execute('SELECT Population FROM Density ORDER BY Population DESC')
 cur.fetchone()
 
 #problem 3
+#What do I expect to happen? Error messages. Don't want to even imagine what kind
+#Maybe the first one will be some kind of just invalid type of request?
+#let's just run the experiment
+
+Python 3.12.2 (tags/v3.12.2:6abddd9, Feb  6 2024, 21:26:36) [MSC v.1937 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+>>> import sqlite3
+>>> con = sqlite3.connect('experiment.db')
+>>> cur = con.cursor()
+>>> cur.execute('CREATE TABLE Numbers(Val INTEGER)')
+<sqlite3.Cursor object at 0x0000018D5253FDC0>
+>>> cur.execute('INSERT INTO Numbers Values(1)')
+<sqlite3.Cursor object at 0x0000018D5253FDC0>
+>>> cur.execute('INSERT INTO Numbers Values(2)')
+<sqlite3.Cursor object at 0x0000018D5253FDC0>
+>>> cur.execute('SELECT * FROM Numbers WHERE 1/0')
+<sqlite3.Cursor object at 0x0000018D5253FDC0>
+>>> cur.fetchall()
+[]
+>>> cur.execute('SELECT * FROM Numbers WHERE 1/0 AND Val > 0')
+<sqlite3.Cursor object at 0x0000018D5253FDC0>
+>>> cur.fetchall()
+[]
+>>> cur.execute('SELECT * FROM Numbers WHERE Val > 0 AND 1/0')
+<sqlite3.Cursor object at 0x0000018D5253FDC0>
+>>> cur.fetchall()
+[]
+
+#well, turns out it just won't even bother. returned a bunch of empty sets. that's kinda neat
+#nice error handling, i think
